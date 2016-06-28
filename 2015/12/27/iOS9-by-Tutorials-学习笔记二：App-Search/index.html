@@ -1,0 +1,629 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>iOS9 by Tutorials 学习笔记二：App Search | 孟祥月的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <meta name="baidu-site-verification" content="YSYW9gr1NI" />
+    
+    <meta name="author" content="孟祥月">
+    
+
+    
+    <meta name="description" content="本文为自己读书的一个总结，可能与原书有一定出入  
+
+iOS 9推出了搜索技术，能够让用户在Spotlight中搜索到APP内部的内容。苹果提供了三个APP Search API：
+
+NSUserActivity
+Core Spotlight
+Web markup
+
+下面简单的说一下我对于这三个API的理解：
+
+NSUserActivity:NSUserActivity在iOS8就已经提出来了，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS9 by Tutorials 学习笔记二：App Search">
+<meta property="og:url" content="http://mengxiangyue.com/2015/12/27/iOS9-by-Tutorials-学习笔记二：App-Search/index.html">
+<meta property="og:site_name" content="孟祥月的博客">
+<meta property="og:description" content="本文为自己读书的一个总结，可能与原书有一定出入  
+
+iOS 9推出了搜索技术，能够让用户在Spotlight中搜索到APP内部的内容。苹果提供了三个APP Search API：
+
+NSUserActivity
+Core Spotlight
+Web markup
+
+下面简单的说一下我对于这三个API的理解：
+
+NSUserActivity:NSUserActivity在iOS8就已经提出来了，">
+<meta property="og:image" content="http://mengxiangyue.com/images/2015.12.27.01.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2015.12.27.02.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2015.12.27.03.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2015.12.27.04.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2015.12.27.05.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2015.12.27.06.png">
+<meta property="og:updated_time" content="2016-04-25T10:54:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS9 by Tutorials 学习笔记二：App Search">
+<meta name="twitter:description" content="本文为自己读书的一个总结，可能与原书有一定出入  
+
+iOS 9推出了搜索技术，能够让用户在Spotlight中搜索到APP内部的内容。苹果提供了三个APP Search API：
+
+NSUserActivity
+Core Spotlight
+Web markup
+
+下面简单的说一下我对于这三个API的理解：
+
+NSUserActivity:NSUserActivity在iOS8就已经提出来了，">
+<meta name="twitter:image" content="http://mengxiangyue.com/images/2015.12.27.01.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="孟祥月的博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/mengxiangyue.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/mengxiangyue.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="孟祥月的博客" title="孟祥月的博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="孟祥月的博客">孟祥月的博客</a></h1>
+				<h2 class="blog-motto">昨晚多几分钟的准备，今天少几小时的麻烦。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					<!-- 
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:mengxiangyue.com">
+					</form>
+					 -->
+					</li>
+				</ul>
+			</nav>
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody">
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/12/27/iOS9-by-Tutorials-学习笔记二：App-Search/" title="iOS9 by Tutorials 学习笔记二：App Search" itemprop="url">iOS9 by Tutorials 学习笔记二：App Search</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="孟祥月" target="_blank" itemprop="author">孟祥月</a>
+		
+  <p class="article-time">
+    <time datetime="2015-12-27T03:52:58.000Z" itemprop="datePublished"> 发表于 2015-12-27</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Getting-started"><span class="toc-number">1.</span> <span class="toc-text">Getting started</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#搜索我们已经打开过的内容"><span class="toc-number">1.1.</span> <span class="toc-text">搜索我们已经打开过的内容</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CoreSpotlight"><span class="toc-number">2.</span> <span class="toc-text">CoreSpotlight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除Item"><span class="toc-number">3.</span> <span class="toc-text">删除Item</span></a></li></ol>
+		
+		</div>
+		
+    <blockquote>
+      <p>声明：本文章版权归作者所有，转载请注明出处。<br>
+        孟祥月的博客：<a href="http://www.mengxiangyue.com" target="_blank" rel="external">http://www.mengxiangyue.com</a><br>
+        <a href="http://blog.csdn.net/mengxiangyue" target="_blank" rel="external">http://blog.csdn.net/mengxiangyue</a>
+      </p>
+    </blockquote>
+
+		<blockquote>
+<p>本文为自己读书的一个总结，可能与原书有一定出入  </p>
+</blockquote>
+<p>iOS 9推出了搜索技术，能够让用户在Spotlight中搜索到APP内部的内容。苹果提供了三个APP Search API：</p>
+<ul>
+<li>NSUserActivity</li>
+<li>Core Spotlight</li>
+<li>Web markup</li>
+</ul>
+<p>下面简单的说一下我对于这三个API的理解：</p>
+<ol>
+<li>NSUserActivity:<br>NSUserActivity在iOS8就已经提出来了，只是那时候提出来是用作HandOff。在iOS9中它可以用来搜索App中的内容。我们可以把一些想要在Spotlight中被搜到的东西，放到NSUserActivity中，然后就能在Spotlight中被搜到，但是这个有一点限制，就是只能搜索用户访问过得内容。因为UIViewController的userActivity属性继承自UIResponser，只有在UIViewcontroller访问的时候，才有机会设置userActivity属性。   </li>
+<li>Core Spotlight:<br>这个是在iOS9新推出的技术，能够将APP的内容在Spotlight中被搜索到。这个技术我理解：苹果给开发者提供了一个全局的index数据库，我们能够把我们想要能够在Spotlight中搜索的内容，按照苹果的要求放到数据库中，然后苹果就做了其他的事情，让其能够被搜索到。同样我们也可以删除我们存储到数据库中的内容。    </li>
+<li>Web markup:<br>Web Markup在网页上显示App的内容并编入Spotlight索引，如此一来即便没有安装某个App，苹果的索引器也能在网页上搜索特别的标记（markup），在Safari或Spotlight上显示搜索结果。具体会在下一篇文章中详细介绍。</li>
+</ol>
+<a id="more"></a>
+<h3 id="Getting-started"><a href="#Getting-started" class="headerlink" title="Getting started"></a>Getting started</h3><p>下面开始试验一下相关的技术，这里还是利用书中的star工程。现在这个工程运行后，就两个界面：<br><img src="/images/2015.12.27.01.png" alt="">    </p>
+<p>下面是这个工程的截图：<br><img src="/images/2015.12.27.02.png" alt="">    </p>
+<p>下面是图中标注的几个关键类的解释：</p>
+<ol>
+<li>AppDelegate<br>点击搜索结果跳跳转到程序中，会先在这个类里面做一定的处理    </li>
+<li>EmployeeViewController<br>人员的详细界面，这个里面主要设置NSUserActivity    </li>
+<li>EmployeeService<br>这个主要是写CoreSpotlight中index相关的东西    </li>
+<li>EmployeeSearch<br>主要是扩展了Employee类，添加了与搜索相关的属性<br>另外工程中有员工相关的一些操作都封装在了一个EmployeeKit的target，由于跟主target不在一个module，所以在主target中需要import。    </li>
+</ol>
+<p>在Iphone的Setting/Colleagues/Indexing中有如下三个选项：  </p>
+<ul>
+<li>Disabled 不使用Search API，即不能在Spotlight中搜索到APP中的内容</li>
+<li>ViewedRecords 只有打开过的才能够被搜索到  </li>
+<li>AllRecords 所有的员工信息都能够被搜索到   </li>
+</ul>
+<h4 id="搜索我们已经打开过的内容"><a href="#搜索我们已经打开过的内容" class="headerlink" title="搜索我们已经打开过的内容"></a>搜索我们已经打开过的内容</h4><p>使用NSUserActivity实现这个比较简单，只要两个步骤就可以了：</p>
+<ol>
+<li>创建NSUserActivity的一个实例，设置相关的属性</li>
+<li>赋值给UIViewController的userActivity属性   </li>
+</ol>
+<p>下面我们在EmployeeSearch中添加如下代码：  </p>
+<blockquote>
+<p>如果没有该文件，需要手动创建一个，然后target选择EmployeeKit   </p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Foundation</span><br><span class="line"><span class="keyword">import</span> CoreSpotlight</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 这个用于区分Activity，会在点击搜索结果进入APP，相关处理的时候用到，同样也可以在CoreSpotlight中使用到，对于添加、删除index数据的时候都会用到</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">let</span> domainIdentifier = <span class="string">"com.mengxiangyue.colleagues.employee"</span></span><br><span class="line">  <span class="comment">// 字典 在处理点击的时候，可以根据该字典获取我们想要的数据</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">var</span> userActivityUserInfo: [<span class="type">NSObject</span>: <span class="type">AnyObject</span>] &#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="string">"id"</span>: objectId]</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 给Employee添加userActivity属性，主要是方便我们获取userActivity</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">var</span> userActivity: <span class="type">NSUserActivity</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> activity = <span class="type">NSUserActivity</span>(activityType: <span class="type">Employee</span>.domainIdentifier)</span><br><span class="line">    activity.title = name  <span class="comment">// 显示的名字</span></span><br><span class="line">    activity.userInfo = userActivityUserInfo  <span class="comment">// 与该Activity相关的数据</span></span><br><span class="line">    activity.keywords = [email, department]  <span class="comment">// 关键字 表示搜索什么关键字，能够搜索出来该条记录，当然这个只是补充，这里没有添加name，同样也是可以按照name搜索</span></span><br><span class="line">    <span class="keyword">return</span> activity</span><br><span class="line">  &#125;</span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+<p>这里扩展了Employee，然后添加了几个属性，属性的意义见注释。<br>这时候我们需要重新编译一下EmployeeKit（因为与主target不是同一个target）。   </p>
+<p>下面打开EmployeeViewController.swift，在viewDidLoad()中添加如下代码：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> activity = employee.userActivity</span><br><span class="line"><span class="keyword">switch</span> <span class="type">Setting</span>.searchIndexingPreference &#123;</span><br><span class="line"><span class="keyword">case</span> .<span class="type">Disabled</span>:</span><br><span class="line">  activity.eligibleForSearch = <span class="literal">false</span></span><br><span class="line"><span class="keyword">case</span> .<span class="type">ViewedRecords</span>:</span><br><span class="line">  activity.eligibleForSearch = <span class="literal">true</span></span><br><span class="line">  <span class="comment">// relatedUniqueIdentifier 定义一个id 防止NSUserActivity和Core Spotlight重复索引，这里设置为nil，显示一下会重复</span></span><br><span class="line">  activity.contentAttributeSet?.relatedUniqueIdentifier = <span class="literal">nil</span></span><br><span class="line"><span class="keyword">case</span> .<span class="type">AllRecords</span>:</span><br><span class="line">  activity.eligibleForSearch = <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">userActivity = activity</span><br></pre></td></tr></table></figure>   </p>
+<p>下面在该类中添加如下的方法，用于在合适的时机更新Activity：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 更新NSUserActivity关联的信息</span></span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">updateUserActivityState</span><span class="params">(activity: NSUserActivity)</span></span> &#123;</span><br><span class="line">    activity.addUserInfoEntriesFromDictionary(employee.userActivityUserInfo)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>  </p>
+<p>下面在Iphone的Setting/Colleagues/Indexing中选择ViewedRecords。然后启动APP，在列表中点击Brent Reid进入详细页面，然后使用Command+shift+H，计入Home页面，下拉出现搜索框，然后输入brent出现如下界面：<br><img src="/images/2015.12.27.03.png" alt="">   </p>
+<p>看到这个搜索结果界面，感觉太难看了，下面我们丰富一下这个搜索结果，苹果提供的搜索结果可以设置如下的内容：<br><img src="/images/2015.12.27.04.png" alt="">   </p>
+<p>下面我们在EmployeeSearch.swift添加如下属性：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">var</span> attributeSet: <span class="type">CSSearchableItemAttributeSet</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> attributeSet = <span class="type">CSSearchableItemAttributeSet</span>(itemContentType: kUTTypeContact <span class="keyword">as</span> <span class="type">String</span>)</span><br><span class="line">  attributeSet.title = name  <span class="comment">// 不太清楚是干啥的</span></span><br><span class="line">  attributeSet.contentDescription = <span class="string">"\(department), \(title)\n\(phone)"</span></span><br><span class="line">  attributeSet.thumbnailData = <span class="type">UIImageJPEGRepresentation</span>(loadPicture(), <span class="number">0.9</span>)</span><br><span class="line">  attributeSet.supportsPhoneCall = <span class="literal">true</span></span><br><span class="line">  attributeSet.phoneNumbers = [phone]</span><br><span class="line">  attributeSet.emailAddresses = [email]</span><br><span class="line">  attributeSet.keywords = skills</span><br><span class="line">  attributeSet.relatedUniqueIdentifier = objectId  </span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> attributeSet</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  
+<p>然后将给userActivity添加如下属性：   </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">var</span> userActivity: <span class="type">NSUserActivity</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> activity = <span class="type">NSUserActivity</span>(activityType: <span class="type">Employee</span>.domainIdentifier)</span><br><span class="line">  activity.title = name</span><br><span class="line">  activity.userInfo = userActivityUserInfo</span><br><span class="line">  activity.keywords = [email, department]</span><br><span class="line">  activity.contentAttributeSet = attributeSet   <span class="comment">// 新添加的这一行</span></span><br><span class="line">  <span class="keyword">return</span> activity</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  
+<p>然后运行程序，搜索结果如下：<br><img src="/images/2015.12.27.05.png" alt="">   </p>
+<p>但是现在我们注意到，我们点击搜索结果，打开APP并没有按照我们预想的跳转到该员工的详细界面。这个因为我们在程序中没有做对应的处理，下面我们在AppDelete中添加如下的方法：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">application</span><span class="params">(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: <span class="params">([AnyObject]?)</span></span></span> -&gt; <span class="type">Void</span>) -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> objectId: <span class="type">String</span></span><br><span class="line">  <span class="comment">// 先判断了一个type是不是我们自己定义的 然后获取到对应的EmployeeId</span></span><br><span class="line">  <span class="keyword">if</span> userActivity.activityType == <span class="type">Employee</span>.domainIdentifier, <span class="keyword">let</span> activityObjectId = userActivity.userInfo?[<span class="string">"id"</span>] <span class="keyword">as</span>? <span class="type">String</span> &#123;</span><br><span class="line">    objectId = activityObjectId</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 获取对应Employee实例 然后跳转到对应的界面</span></span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">let</span> nav = window?.rootViewController <span class="keyword">as</span>? <span class="type">UINavigationController</span>, listVC = nav.viewControllers.first <span class="keyword">as</span>? <span class="type">EmployeeListViewController</span>, employee = <span class="type">EmployeeService</span>().employeeWithObjectId(objectId) &#123;</span><br><span class="line">    nav.popToRootViewControllerAnimated(<span class="literal">false</span>)</span><br><span class="line">    <span class="keyword">let</span> employeeViewController = listVC.storyboard?.instantiateViewControllerWithIdentifier(<span class="string">"EmployeeView"</span>) <span class="keyword">as</span>! <span class="type">EmployeeViewController</span></span><br><span class="line">    employeeViewController.employee = employee</span><br><span class="line">    nav.pushViewController(employeeViewController, animated: <span class="literal">false</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;   </span><br></pre></td></tr></table></figure>
+<p>这时候我们再点击搜索结果就能够跳转到对应的详细界面了。</p>
+<h3 id="CoreSpotlight"><a href="#CoreSpotlight" class="headerlink" title="CoreSpotlight"></a>CoreSpotlight</h3><p>下面我们开始使用CoreSpotlight添加这些搜索内容。首先在EmployeeSearch.swift的attributeSet中设置如下属性：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在前面的代码中已经设置过了</span></span><br><span class="line">attributeSet.relatedUniqueIdentifier = objectId</span><br></pre></td></tr></table></figure>
+<p>这个属性主要是将NSUserActivity与Core Spotlight indexed object进行一个关联，防止出现重复的内容（如果出现重复内容，是因为开始的时候测试NSUserActivity的时候没有设置id，还原一下模拟器就好了）   </p>
+<p>然后在EmployeeSearch.swift添加如下的代码：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CoreSpotlight需要将一个个item放入其索引数据库中，这里创建一个方便使用</span></span><br><span class="line"><span class="keyword">var</span> searchableItem: <span class="type">CSSearchableItem</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> item = <span class="type">CSSearchableItem</span>(uniqueIdentifier: objectId, domainIdentifier: <span class="type">Employee</span>.domainIdentifier, attributeSet: attributeSet)</span><br><span class="line">  <span class="keyword">return</span> item</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>   
+<p>然后在EmployeeService.swift添加如下代码：  </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">   </span><br><span class="line"><span class="keyword">import</span> CoreSpotlight</span><br><span class="line"></span><br><span class="line">..............&lt;省略一部分代码&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">indexAllEmployees</span><span class="params">()</span></span> &#123;</span><br><span class="line">  <span class="keyword">let</span> employees = fetchEmployees()</span><br><span class="line">  <span class="keyword">let</span> searchableItems = employees.<span class="built_in">map</span>&#123; $<span class="number">0</span>.searchableItem &#125;</span><br><span class="line">  <span class="comment">// 将我们需要被索引的item放入到defaultSearchableIndex中</span></span><br><span class="line">  <span class="type">CSSearchableIndex</span>.defaultSearchableIndex().indexSearchableItems(searchableItems) &#123; (error) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> error = error &#123;</span><br><span class="line">      <span class="built_in">print</span>(<span class="string">"Error indexing employees: \(error)"</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">print</span>(<span class="string">"Employees indexed."</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>   
+<p>然后在设置中选择AllRecords，这时候启动APP，然后搜索，看到的搜索结果如下：<br><img src="/images/2015.12.27.06.png" alt=""></p>
+<p>但是这时候我们点击搜索结果没有反应，想想应该也能猜到，我们需要在AppDelete中添加代码，最终代码如下：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">application</span><span class="params">(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: <span class="params">([AnyObject]?)</span></span></span> -&gt; <span class="type">Void</span>) -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> objectId: <span class="type">String</span></span><br><span class="line">    <span class="keyword">if</span> userActivity.activityType == <span class="type">Employee</span>.domainIdentifier, <span class="keyword">let</span> activityObjectId = userActivity.userInfo?[<span class="string">"id"</span>] <span class="keyword">as</span>? <span class="type">String</span> &#123;</span><br><span class="line">      objectId = activityObjectId</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 这部分else是新添加的 使用不一样的type区分NSUserActivity和CoreSpotlight,然后获取对应的objectId，其他的处理都一样了   </span></span><br><span class="line">    <span class="comment">// CSSearchableItemActivityIdentifier这个是CoreSpotlight提供的一个key值</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> userActivity.activityType == <span class="type">CSSearchableItemActionType</span>, <span class="keyword">let</span> activityObjectId = userActivity.userInfo?[<span class="type">CSSearchableItemActivityIdentifier</span>] <span class="keyword">as</span>? <span class="type">String</span> &#123;</span><br><span class="line">      objectId = activityObjectId</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> nav = window?.rootViewController <span class="keyword">as</span>? <span class="type">UINavigationController</span>, listVC = nav.viewControllers.first <span class="keyword">as</span>? <span class="type">EmployeeListViewController</span>, employee = <span class="type">EmployeeService</span>().employeeWithObjectId(objectId) &#123;</span><br><span class="line">      nav.popToRootViewControllerAnimated(<span class="literal">false</span>)</span><br><span class="line">      <span class="keyword">let</span> employeeViewController = listVC.storyboard?.instantiateViewControllerWithIdentifier(<span class="string">"EmployeeView"</span>) <span class="keyword">as</span>! <span class="type">EmployeeViewController</span></span><br><span class="line">      employeeViewController.employee = employee</span><br><span class="line">      nav.pushViewController(employeeViewController, animated: <span class="literal">false</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure><br>这时候我们点击搜索结果应该就能够跳转进入对应的人员详情了。   </p>
+<h3 id="删除Item"><a href="#删除Item" class="headerlink" title="删除Item"></a>删除Item</h3><p>最后在简单的说下删除已经索引的Item，修改EmployeeService.swift对应的方法如下：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">destroyEmployeeIndexing</span><span class="params">()</span></span> &#123;</span><br><span class="line">  <span class="type">CSSearchableIndex</span>.defaultSearchableIndex().deleteAllSearchableItemsWithCompletionHandler &#123; (error) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> error = error &#123;</span><br><span class="line">      <span class="built_in">print</span>(<span class="string">"Error deleting searching employee items: \(error)"</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">print</span>(<span class="string">"Employees indexing deleted."</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>这个方法会在APP启动并且Indxing设置为Disabled的时候调用。   </p>
+<p>另外对于CoreSpotlight中对于Item的操作方式还有好多种，这里我就不一一写出来了，有兴趣的可以看看我翻译的API注释，当然文章可能有点老了，但是基本思想应该没变。地址:<a href="http://blog.csdn.net/mengxiangyue/article/details/46575977" target="_blank" rel="external">CoreSpotlight.framework注释翻译</a></p>
+
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS-9-by-Tutoials/">iOS 9 by Tutoials</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/iOS-9/">iOS 9</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://mengxiangyue.com/2015/12/27/iOS9-by-Tutorials-学习笔记二：App-Search/" data-title="iOS9 by Tutorials 学习笔记二：App Search | 孟祥月的博客" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/12/27/iOS9-by-Tutorials-学习笔记三：Your-App-on-the-Web/" title="iOS9 by Tutorials 学习笔记三：Your App on the Web">
+  <strong>上一篇：</strong><br/>
+  <span>
+  iOS9 by Tutorials 学习笔记三：Your App on the Web</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/12/23/iOS-NavigationBar手势返回的时候跟随/"  title="iOS NavigationBar手势返回的时候跟随">
+ <strong>下一篇：</strong><br/> 
+ <span>iOS NavigationBar手势返回的时候跟随
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/12/27/iOS9-by-Tutorials-学习笔记二：App-Search/" data-title="iOS9 by Tutorials 学习笔记二：App Search" data-url="http://mengxiangyue.com/2015/12/27/iOS9-by-Tutorials-学习笔记二：App-Search/"></div>
+</section>
+
+
+</div>
+
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Getting-started"><span class="toc-number">1.</span> <span class="toc-text">Getting started</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#搜索我们已经打开过的内容"><span class="toc-number">1.1.</span> <span class="toc-text">搜索我们已经打开过的内容</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CoreSpotlight"><span class="toc-number">2.</span> <span class="toc-text">CoreSpotlight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除Item"><span class="toc-number">3.</span> <span class="toc-text">删除Item</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/React-Native/" title="React Native">React Native<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS-9-by-Tutoials/" title="iOS 9 by Tutoials">iOS 9 by Tutoials<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS-Tips/" title="iOS Tips">iOS Tips<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/工具/" title="工具">工具<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/iOS-9/" title="iOS 9">iOS 9<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Github/" title="Github">Github<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/React-Native/" title="React Native">React Native<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/mengxiangyue" target="_blank" title="My CSDN Blog">My CSDN Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> iOS小菜鸟一枚，在努力的路上前进着 <br/>
+			喜欢交朋友、聊与技术有关无关的，可以加我QQ、邮件联系我。QQ&amp;mail：598660766@qq.com</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/1750643861" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="孟祥月">孟祥月</a>
+		
+
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize();
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+      
+    }
+  });
+});
+</script>
+<!-- 解决自动生成文章目录序号问题 -->
+<script type="text/javascript">
+var regex = new RegExp("^\\d+\\.\\d* ");
+var tocItemTextArray = $(".toc-article .toc-item .toc-text");
+for (var i = 0; i < tocItemTextArray.length; i++) {
+  var item = tocItemTextArray[i];
+  item.textContent = item.textContent.replace(regex, "");
+}
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"mengxinagyue"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

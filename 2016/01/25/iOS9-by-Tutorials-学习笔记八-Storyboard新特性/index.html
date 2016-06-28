@@ -1,0 +1,578 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>iOS9 by Tutorials 学习笔记八:Storyboard新特性 | 孟祥月的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <meta name="baidu-site-verification" content="YSYW9gr1NI" />
+    
+    <meta name="author" content="孟祥月">
+    
+
+    
+    <meta name="description" content="终于整理到第八篇了，中途好几次都想放弃了，最终还是坚持下来了，我自己的计划应该除了这篇还有最多三篇就结束了吧。   
+回到正题，苹果最近几点一直在努力推行Storyboard，每年的WWDC都会针对Storyboard有一定的增强，今年也不例外，Storyboard添加了一些新的特性：
+
+可以使用storyboard references将一个Scene链接到另一个storyboard中
+使用sc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS9 by Tutorials 学习笔记八:Storyboard新特性">
+<meta property="og:url" content="http://mengxiangyue.com/2016/01/25/iOS9-by-Tutorials-学习笔记八-Storyboard新特性/index.html">
+<meta property="og:site_name" content="孟祥月的博客">
+<meta property="og:description" content="终于整理到第八篇了，中途好几次都想放弃了，最终还是坚持下来了，我自己的计划应该除了这篇还有最多三篇就结束了吧。   
+回到正题，苹果最近几点一直在努力推行Storyboard，每年的WWDC都会针对Storyboard有一定的增强，今年也不例外，Storyboard添加了一些新的特性：
+
+可以使用storyboard references将一个Scene链接到另一个storyboard中
+使用sc">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.25/01.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.25/02.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.25/03.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.25/04.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.25/05.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.25/06.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.25/07.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.25/08.png">
+<meta property="og:updated_time" content="2016-04-25T10:54:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS9 by Tutorials 学习笔记八:Storyboard新特性">
+<meta name="twitter:description" content="终于整理到第八篇了，中途好几次都想放弃了，最终还是坚持下来了，我自己的计划应该除了这篇还有最多三篇就结束了吧。   
+回到正题，苹果最近几点一直在努力推行Storyboard，每年的WWDC都会针对Storyboard有一定的增强，今年也不例外，Storyboard添加了一些新的特性：
+
+可以使用storyboard references将一个Scene链接到另一个storyboard中
+使用sc">
+<meta name="twitter:image" content="http://mengxiangyue.com/images/2016.01.25/01.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="孟祥月的博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/mengxiangyue.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/mengxiangyue.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="孟祥月的博客" title="孟祥月的博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="孟祥月的博客">孟祥月的博客</a></h1>
+				<h2 class="blog-motto">昨晚多几分钟的准备，今天少几小时的麻烦。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					<!-- 
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:mengxiangyue.com">
+					</form>
+					 -->
+					</li>
+				</ul>
+			</nav>
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody">
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/01/25/iOS9-by-Tutorials-学习笔记八-Storyboard新特性/" title="iOS9 by Tutorials 学习笔记八:Storyboard新特性" itemprop="url">iOS9 by Tutorials 学习笔记八:Storyboard新特性</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="孟祥月" target="_blank" itemprop="author">孟祥月</a>
+		
+  <p class="article-time">
+    <time datetime="2016-01-25T15:06:34.000Z" itemprop="datePublished"> 发表于 2016-01-25</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Getting-started"><span class="toc-number">1.</span> <span class="toc-text">Getting started</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Storyboard-references"><span class="toc-number">2.</span> <span class="toc-text">Storyboard references</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Creating-your-first-storyboard-reference"><span class="toc-number">2.1.</span> <span class="toc-text">Creating your first storyboard reference</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Storyboards-within-a-team"><span class="toc-number">2.2.</span> <span class="toc-text">Storyboards within a team</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Views-in-the-scene-dock"><span class="toc-number">3.</span> <span class="toc-text">Views in the scene dock</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Using-multiple-bar-buttons"><span class="toc-number">4.</span> <span class="toc-text">Using multiple bar buttons</span></a></li></ol>
+		
+		</div>
+		
+    <blockquote>
+      <p>声明：本文章版权归作者所有，转载请注明出处。<br>
+        孟祥月的博客：<a href="http://www.mengxiangyue.com" target="_blank" rel="external">http://www.mengxiangyue.com</a><br>
+        <a href="http://blog.csdn.net/mengxiangyue" target="_blank" rel="external">http://blog.csdn.net/mengxiangyue</a>
+      </p>
+    </blockquote>
+
+		<p>终于整理到第八篇了，中途好几次都想放弃了，最终还是坚持下来了，我自己的计划应该除了这篇还有最多三篇就结束了吧。   </p>
+<p>回到正题，苹果最近几点一直在努力推行Storyboard，每年的WWDC都会针对Storyboard有一定的增强，今年也不例外，Storyboard添加了一些新的特性：</p>
+<ol>
+<li>可以使用storyboard references将一个Scene链接到另一个storyboard中</li>
+<li>使用scene dock给view controller添加附加的view</li>
+<li>在navigation bar上添加多个button</li>
+</ol>
+<h3 id="Getting-started"><a href="#Getting-started" class="headerlink" title="Getting started"></a>Getting started</h3><p>打开本节配套的工程，在模拟器上运行一下，看看都有什么功能。下面看一下代码 <strong>ChecklistsViewController.swift</strong> 显示checklist，<strong>ChecklistDetailViewController.swift</strong> 显示list中的每一个item，<strong>Main.storyboard</strong> 包含用户界面。这个App并没有完成，在本节中将会添加一些功能，完善该APP。  </p>
+<h3 id="Storyboard-references"><a href="#Storyboard-references" class="headerlink" title="Storyboard references"></a>Storyboard references</h3><p>如果你在一个大的项目中使用了storyboard，你将会慢慢感觉storyboard越来越大，会越来越笨重，并且还经常会发生冲突。这些导致了storyboard慢慢丢失了它的优势。   </p>
+<p>你可能已经通过将Scene分别放到多个storyboard中的方式解决了一部分的问题，但是同时也遇到了一些问题：在两个Scene之间的segue不能直接添加了，显示一个View Controller有时候必须通过代码创建显示。  </p>
+<a id="more"></a>
+<p>现在我们在Xcode7中能够通过storyboard reference解决这个问题了。它能够很容易的将storyboard分割成为更小的storyboard，并且能够直接在storyboard中使用segue。更多的小的storyboard也能让团队的成员更加独立的工作，而不会影响到其他的团队成员。  </p>
+<h4 id="Creating-your-first-storyboard-reference"><a href="#Creating-your-first-storyboard-reference" class="headerlink" title="Creating your first storyboard reference"></a>Creating your first storyboard reference</h4><p>目前的情况，Prepped是一个很小的app，但是同样也可以在结构上进行storyboard的划分。Container view controller就是一个很好的从功能上划分的例子。   </p>
+<p>Prepped使用的tab bar controller，在这种情况下，将每个tab的子view controller划分进一个storyboard是一个不错的选择（当然每个tab bar子VC下还可以划分）。    </p>
+<p>打开Main.storyboard,双击空白区域，缩小storyboard区域，能够看到所有的scene。选中除tab bar controller的所有的scene。<br><img src="/images/2016.01.25/01.png" alt=""></p>
+<p>选择 <strong>Editor\Refactor to Storyboard</strong>，输入 <strong>Checklists.storyboard</strong> 作为新的storyboard的名字。点击Save。这样我们就将一部分的Scene拆分到了新的storyboard中。Main.storyboard也变成了下面的样子：<br><img src="/images/2016.01.25/02.png" alt="">  </p>
+<p>选中图中的Reference，查看右边的属性检查器，能够看到Storyboard和Referenced ID，storyboard根据这两个属性去确定该reference真正指向的Scene。双加该reference也能够跳转到真正的Scene。如果我们删除了上图中的Referenced ID，默认情况下指向的是reference Storyboard中Initial View Controller。<br><img src="/images/2016.01.25/03.png" alt="">  </p>
+<h4 id="Storyboards-within-a-team"><a href="#Storyboards-within-a-team" class="headerlink" title="Storyboards within a team"></a>Storyboards within a team</h4><p>由于在团队中都惧怕Storyboard的冲突，所以还是很少使用。但是现在storyboard reference能够避免这些冲突。我们可能都遇到过这种情况，我们在一个storyboard钟创建了一个view controller，在另一个storyboard想要跳转到它，一般这种情况我们都是使用代码跳转了，现在我们可以使用storyboard实现了。</p>
+<blockquote>
+<p>添加工程目录内的Diary目录到工程中来  </p>
+</blockquote>
+<p>打开Main.storyboard，拽一个storyboard reference添加到storyboard的空白区域：<br><img src="/images/2016.01.25/04.png" alt="">    </p>
+<p>运行程序，显示如下：<br><img src="/images/2016.01.25/05.png" alt="">   </p>
+<h3 id="Views-in-the-scene-dock"><a href="#Views-in-the-scene-dock" class="headerlink" title="Views in the scene dock"></a>Views in the scene dock</h3><p>Scene Dock是在Storyboard Scene顶部的一个区域（下图中有标注），我们可以将View添加到scene dock上，添加到scene dock上的view不会被初始化添加到view controller的view的subviews中，但是你能够使用IBOutlet引用使用它。按照如图添加然后设置该View的background color为#FFFAE8.<br><img src="/images/2016.01.25/06.png" alt="">    </p>
+<p>按照下图，按住ctrl连接，在弹出菜单中选择selectedBackgroundView：<br><img src="/images/2016.01.25/07.png" alt="">     </p>
+<p>运行程序，发现我们选中的item上面添加了背景。  </p>
+<p>上面的例子中我们只是通过storyboard使用了scene dock中的view，我们也可以使用IBOutlet引用到我们的代码中，然后由代码控制在什么情况下的隐藏与显示。</p>
+<h3 id="Using-multiple-bar-buttons"><a href="#Using-multiple-bar-buttons" class="headerlink" title="Using multiple bar buttons"></a>Using multiple bar buttons</h3><p>在Xcode 7中我们可以在storyboard中，为view controller的Navigation bar在同一侧添加多个按钮了。  </p>
+<p>打开ChecklistDetail.storyboard，选中 Checklist Detail View Controller，从Object Library中拽多个bar button item添加到右侧的Navigation bar上，这样就添加了多个bar button，添加完后其他的使用方式就跟原来的基本一样了，这里就不重复了。<br><img src="/images/2016.01.25/08.png" alt="">    </p>
+<p>最近一直在比较累，所以这篇整理的比较简单，只是挑选了一些重点的写出来了，如果哪里感觉不是太详细，还请去看英文的原版。</p>
+
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS-9-by-Tutoials/">iOS 9 by Tutoials</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/iOS-9/">iOS 9</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://mengxiangyue.com/2016/01/25/iOS9-by-Tutorials-学习笔记八-Storyboard新特性/" data-title="iOS9 by Tutorials 学习笔记八:Storyboard新特性 | 孟祥月的博客" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/02/23/iOS9-by-Tutorials-学习笔记九：3D-Touch/" title="iOS9-by-Tutorials-学习笔记九：3D Touch">
+  <strong>上一篇：</strong><br/>
+  <span>
+  iOS9-by-Tutorials-学习笔记九：3D Touch</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/01/21/iOS9-by-Tutorials-学习笔记七：UIStackView-进阶/"  title="iOS9-by-Tutorials-学习笔记七：UIStackView 进阶">
+ <strong>下一篇：</strong><br/> 
+ <span>iOS9-by-Tutorials-学习笔记七：UIStackView 进阶
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/01/25/iOS9-by-Tutorials-学习笔记八-Storyboard新特性/" data-title="iOS9 by Tutorials 学习笔记八:Storyboard新特性" data-url="http://mengxiangyue.com/2016/01/25/iOS9-by-Tutorials-学习笔记八-Storyboard新特性/"></div>
+</section>
+
+
+</div>
+
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Getting-started"><span class="toc-number">1.</span> <span class="toc-text">Getting started</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Storyboard-references"><span class="toc-number">2.</span> <span class="toc-text">Storyboard references</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Creating-your-first-storyboard-reference"><span class="toc-number">2.1.</span> <span class="toc-text">Creating your first storyboard reference</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Storyboards-within-a-team"><span class="toc-number">2.2.</span> <span class="toc-text">Storyboards within a team</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Views-in-the-scene-dock"><span class="toc-number">3.</span> <span class="toc-text">Views in the scene dock</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Using-multiple-bar-buttons"><span class="toc-number">4.</span> <span class="toc-text">Using multiple bar buttons</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/React-Native/" title="React Native">React Native<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS-9-by-Tutoials/" title="iOS 9 by Tutoials">iOS 9 by Tutoials<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS-Tips/" title="iOS Tips">iOS Tips<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/工具/" title="工具">工具<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/iOS-9/" title="iOS 9">iOS 9<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Github/" title="Github">Github<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/React-Native/" title="React Native">React Native<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/mengxiangyue" target="_blank" title="My CSDN Blog">My CSDN Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> iOS小菜鸟一枚，在努力的路上前进着 <br/>
+			喜欢交朋友、聊与技术有关无关的，可以加我QQ、邮件联系我。QQ&amp;mail：598660766@qq.com</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/1750643861" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="孟祥月">孟祥月</a>
+		
+
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize();
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+      
+    }
+  });
+});
+</script>
+<!-- 解决自动生成文章目录序号问题 -->
+<script type="text/javascript">
+var regex = new RegExp("^\\d+\\.\\d* ");
+var tocItemTextArray = $(".toc-article .toc-item .toc-text");
+for (var i = 0; i < tocItemTextArray.length; i++) {
+  var item = tocItemTextArray[i];
+  item.textContent = item.textContent.replace(regex, "");
+}
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"mengxinagyue"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

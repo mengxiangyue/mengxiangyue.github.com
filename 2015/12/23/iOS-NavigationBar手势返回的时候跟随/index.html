@@ -1,0 +1,531 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>iOS NavigationBar手势返回的时候跟随 | 孟祥月的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <meta name="baidu-site-verification" content="YSYW9gr1NI" />
+    
+    <meta name="author" content="孟祥月">
+    
+
+    
+    <meta name="description" content="在iOS的开发中有时候会遇到这样的情况，在开发的过程中有两个界面，这两个界面使用UINavigationController串联起来，然后在第一个ViewController中不显示UINavigationBar，在第二个显示UINavigationBar。iOS在手势返回的时候默认情况下iOS的NavigationBar是固定的，然后再去做一些渐变位移等动画，但是如果我们在一个界面有Naviga">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS NavigationBar手势返回的时候跟随">
+<meta property="og:url" content="http://mengxiangyue.com/2015/12/23/iOS-NavigationBar手势返回的时候跟随/index.html">
+<meta property="og:site_name" content="孟祥月的博客">
+<meta property="og:description" content="在iOS的开发中有时候会遇到这样的情况，在开发的过程中有两个界面，这两个界面使用UINavigationController串联起来，然后在第一个ViewController中不显示UINavigationBar，在第二个显示UINavigationBar。iOS在手势返回的时候默认情况下iOS的NavigationBar是固定的，然后再去做一些渐变位移等动画，但是如果我们在一个界面有Naviga">
+<meta property="og:image" content="http://mengxiangyue.com/images/2015.12.23.NavigationBarTest.gif">
+<meta property="og:updated_time" content="2016-04-25T10:54:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS NavigationBar手势返回的时候跟随">
+<meta name="twitter:description" content="在iOS的开发中有时候会遇到这样的情况，在开发的过程中有两个界面，这两个界面使用UINavigationController串联起来，然后在第一个ViewController中不显示UINavigationBar，在第二个显示UINavigationBar。iOS在手势返回的时候默认情况下iOS的NavigationBar是固定的，然后再去做一些渐变位移等动画，但是如果我们在一个界面有Naviga">
+<meta name="twitter:image" content="http://mengxiangyue.com/images/2015.12.23.NavigationBarTest.gif">
+
+    
+    <link rel="alternative" href="/atom.xml" title="孟祥月的博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/mengxiangyue.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/mengxiangyue.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="孟祥月的博客" title="孟祥月的博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="孟祥月的博客">孟祥月的博客</a></h1>
+				<h2 class="blog-motto">昨晚多几分钟的准备，今天少几小时的麻烦。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					<!-- 
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:mengxiangyue.com">
+					</form>
+					 -->
+					</li>
+				</ul>
+			</nav>
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody">
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/12/23/iOS-NavigationBar手势返回的时候跟随/" title="iOS NavigationBar手势返回的时候跟随" itemprop="url">iOS NavigationBar手势返回的时候跟随</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="孟祥月" target="_blank" itemprop="author">孟祥月</a>
+		
+  <p class="article-time">
+    <time datetime="2015-12-23T15:22:39.000Z" itemprop="datePublished"> 发表于 2015-12-23</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+    <blockquote>
+      <p>声明：本文章版权归作者所有，转载请注明出处。<br>
+        孟祥月的博客：<a href="http://www.mengxiangyue.com" target="_blank" rel="external">http://www.mengxiangyue.com</a><br>
+        <a href="http://blog.csdn.net/mengxiangyue" target="_blank" rel="external">http://blog.csdn.net/mengxiangyue</a>
+      </p>
+    </blockquote>
+
+		<p>在iOS的开发中有时候会遇到这样的情况，在开发的过程中有两个界面，这两个界面使用UINavigationController串联起来，然后在第一个ViewController中不显示UINavigationBar，在第二个显示UINavigationBar。iOS在手势返回的时候默认情况下iOS的NavigationBar是固定的，然后再去做一些渐变位移等动画，但是如果我们在一个界面有NavigationBar，一个没有这样的动画就会很难看。这时候我们希望第二个界面手势返回的时候，NavigationBar跟着界面一起移动。 实现类似下面的效果:   </p>
+<p><img src="/images/2015.12.23.NavigationBarTest.gif" alt="">  </p>
+<a id="more"></a>
+<p>这个效果中有两个ViewController，在第二个Controller手势返回的时候，UINavigationBar是跟随着Controller的。如果只是在第一个界面的时候使用这种效果比较简单，只要在两个Controller中添加如下代码即可：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line"><span class="comment">// 第一个ViewController</span></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewWillAppear</span><span class="params">(animated: Bool)</span></span> &#123;</span><br><span class="line">    <span class="keyword">super</span>.viewWillAppear(animated)</span><br><span class="line">    <span class="comment">// 这里一定要使用这个方法 否则会有问题</span></span><br><span class="line">    <span class="keyword">self</span>.navigationController?.setNavigationBarHidden(<span class="literal">true</span>, animated: <span class="literal">true</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二个ViewController</span></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewWillAppear</span><span class="params">(animated: Bool)</span></span> &#123;</span><br><span class="line">    <span class="keyword">super</span>.viewWillAppear(animated)</span><br><span class="line">    <span class="keyword">self</span>.navigationController?.setNavigationBarHidden(<span class="literal">false</span>, animated: <span class="literal">true</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码只能实现第一个UINavigationController第一个ViewController隐藏，第二个显示的时候实现跟随效果。如果想实现所有的界面都有跟随的效果，那需要自定义ViewController的转场动画，网上有人已经实现了这个效果，感兴趣的可以下载看一下，地址：<a href="https://github.com/esonchen/CCSlideNavigationTransition" target="_blank" rel="external">https://github.com/esonchen/CCSlideNavigationTransition</a>。   </p>
+<p>这篇文章比较短，只是一个简单的Tip而已。</p>
+
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS-Tips/">iOS Tips</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://mengxiangyue.com/2015/12/23/iOS-NavigationBar手势返回的时候跟随/" data-title="iOS NavigationBar手势返回的时候跟随 | 孟祥月的博客" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/12/27/iOS9-by-Tutorials-学习笔记二：App-Search/" title="iOS9 by Tutorials 学习笔记二：App Search">
+  <strong>上一篇：</strong><br/>
+  <span>
+  iOS9 by Tutorials 学习笔记二：App Search</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/12/22/iOS9-by-Tutorials-学习笔记一：Swift-2-0/"  title="iOS9 by Tutorials 学习笔记一：Swift 2.0">
+ <strong>下一篇：</strong><br/> 
+ <span>iOS9 by Tutorials 学习笔记一：Swift 2.0
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/12/23/iOS-NavigationBar手势返回的时候跟随/" data-title="iOS NavigationBar手势返回的时候跟随" data-url="http://mengxiangyue.com/2015/12/23/iOS-NavigationBar手势返回的时候跟随/"></div>
+</section>
+
+
+</div>
+
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/React-Native/" title="React Native">React Native<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS-9-by-Tutoials/" title="iOS 9 by Tutoials">iOS 9 by Tutoials<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS-Tips/" title="iOS Tips">iOS Tips<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/工具/" title="工具">工具<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/iOS-9/" title="iOS 9">iOS 9<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Github/" title="Github">Github<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/React-Native/" title="React Native">React Native<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/mengxiangyue" target="_blank" title="My CSDN Blog">My CSDN Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> iOS小菜鸟一枚，在努力的路上前进着 <br/>
+			喜欢交朋友、聊与技术有关无关的，可以加我QQ、邮件联系我。QQ&amp;mail：598660766@qq.com</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/1750643861" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="孟祥月">孟祥月</a>
+		
+
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize();
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+      
+    }
+  });
+});
+</script>
+<!-- 解决自动生成文章目录序号问题 -->
+<script type="text/javascript">
+var regex = new RegExp("^\\d+\\.\\d* ");
+var tocItemTextArray = $(".toc-article .toc-item .toc-text");
+for (var i = 0; i < tocItemTextArray.length; i++) {
+  var item = tocItemTextArray[i];
+  item.textContent = item.textContent.replace(regex, "");
+}
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"mengxinagyue"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

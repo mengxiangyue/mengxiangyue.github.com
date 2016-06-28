@@ -1,0 +1,608 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>iOS9 by Tutorials 学习笔记四：APP 瘦身 | 孟祥月的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <meta name="baidu-site-verification" content="YSYW9gr1NI" />
+    
+    <meta name="author" content="孟祥月">
+    
+
+    
+    <meta name="description" content="这篇文章在书中的标题是App Thinning，这里我给翻译成了App 瘦身。
+本文然然进行了一些语法的修改，很开心她为我修改这些东西。她说我转折只会用但是，被她这么一说想想还真是只是会用但是，嘿嘿。  
+
+iPhone经过这几年的发展，已经发生了很大的变化，例如屏幕变得更加多样，尺寸更多，内存变得更大，CPU的架构也在变化。伴随着iPhone的变化，iOS也在变化，例如AutoLayout、s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS9 by Tutorials 学习笔记四：APP 瘦身">
+<meta property="og:url" content="http://mengxiangyue.com/2016/01/04/iOS9-by-Tutorials-学习笔记四：APP-瘦身/index.html">
+<meta property="og:site_name" content="孟祥月的博客">
+<meta property="og:description" content="这篇文章在书中的标题是App Thinning，这里我给翻译成了App 瘦身。
+本文然然进行了一些语法的修改，很开心她为我修改这些东西。她说我转折只会用但是，被她这么一说想想还真是只是会用但是，嘿嘿。  
+
+iPhone经过这几年的发展，已经发生了很大的变化，例如屏幕变得更加多样，尺寸更多，内存变得更大，CPU的架构也在变化。伴随着iPhone的变化，iOS也在变化，例如AutoLayout、s">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.04.01.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.04.02.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.04.03.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.04.04.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.04.05.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.04.06.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.04.07.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.04.08.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.04.09.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.04.10.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.04.11.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.04.12.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.04.13.png">
+<meta property="og:updated_time" content="2016-04-25T10:54:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS9 by Tutorials 学习笔记四：APP 瘦身">
+<meta name="twitter:description" content="这篇文章在书中的标题是App Thinning，这里我给翻译成了App 瘦身。
+本文然然进行了一些语法的修改，很开心她为我修改这些东西。她说我转折只会用但是，被她这么一说想想还真是只是会用但是，嘿嘿。  
+
+iPhone经过这几年的发展，已经发生了很大的变化，例如屏幕变得更加多样，尺寸更多，内存变得更大，CPU的架构也在变化。伴随着iPhone的变化，iOS也在变化，例如AutoLayout、s">
+<meta name="twitter:image" content="http://mengxiangyue.com/images/2016.01.04.01.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="孟祥月的博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/mengxiangyue.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/mengxiangyue.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="孟祥月的博客" title="孟祥月的博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="孟祥月的博客">孟祥月的博客</a></h1>
+				<h2 class="blog-motto">昨晚多几分钟的准备，今天少几小时的麻烦。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					<!-- 
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:mengxiangyue.com">
+					</form>
+					 -->
+					</li>
+				</ul>
+			</nav>
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody">
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/01/04/iOS9-by-Tutorials-学习笔记四：APP-瘦身/" title="iOS9 by Tutorials 学习笔记四：APP 瘦身" itemprop="url">iOS9 by Tutorials 学习笔记四：APP 瘦身</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="孟祥月" target="_blank" itemprop="author">孟祥月</a>
+		
+  <p class="article-time">
+    <time datetime="2016-01-04T14:26:09.000Z" itemprop="datePublished"> 发表于 2016-01-04</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Getting-started"><span class="toc-number">1.</span> <span class="toc-text">Getting started</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Measuring-your-work"><span class="toc-number">1.1.</span> <span class="toc-text">Measuring your work</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Slicing-up-app-slicing"><span class="toc-number">2.</span> <span class="toc-text">Slicing up app slicing</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Being-smart-with-resources"><span class="toc-number">2.1.</span> <span class="toc-text">Being smart with resources</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Your-first-fix"><span class="toc-number">2.1.1.</span> <span class="toc-text">Your first fix</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Lazily-down-loading-content"><span class="toc-number">2.1.2.</span> <span class="toc-text">Lazily (down)loading content</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Wire-things-up-to-use-tags"><span class="toc-number">2.1.3.</span> <span class="toc-text">Wire things up to use tags</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Make-it-download-faster"><span class="toc-number">2.2.</span> <span class="toc-text">Make it download faster</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#The-many-flavors-of-tagging"><span class="toc-number">2.3.</span> <span class="toc-text">The many flavors of tagging</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Initial-install-tags"><span class="toc-number">2.3.1.</span> <span class="toc-text">Initial install tags</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Purging-content"><span class="toc-number">2.4.</span> <span class="toc-text">Purging content</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Set-a-resource-to-be-purged"><span class="toc-number">2.4.1.</span> <span class="toc-text">Set a resource to be purged</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+    <blockquote>
+      <p>声明：本文章版权归作者所有，转载请注明出处。<br>
+        孟祥月的博客：<a href="http://www.mengxiangyue.com" target="_blank" rel="external">http://www.mengxiangyue.com</a><br>
+        <a href="http://blog.csdn.net/mengxiangyue" target="_blank" rel="external">http://blog.csdn.net/mengxiangyue</a>
+      </p>
+    </blockquote>
+
+		<blockquote>
+<p>这篇文章在书中的标题是App Thinning，这里我给翻译成了App 瘦身。</p>
+<p>本文然然进行了一些语法的修改，很开心她为我修改这些东西。她说我转折只会用但是，被她这么一说想想还真是只是会用但是，嘿嘿。  </p>
+</blockquote>
+<p>iPhone经过这几年的发展，已经发生了很大的变化，例如屏幕变得更加多样，尺寸更多，内存变得更大，CPU的架构也在变化。伴随着iPhone的变化，iOS也在变化，例如AutoLayout、size classes、split view controller等。这些技术及设备的变化给我在开发的过程中也造成了许多的问题，不仅如此苹果通过不断推出新的技术，努力在帮助我们使用同一套代码开发适应多个设备的Universal的App。另一方面Universal App虽然在开发的过程中，方便了我们开发人员，可是对于用户来说就不那么友好了，由于需要适配多种设备，所以里包含所有设备的代码，但真正的在运行的时候，我们并不需要那么多相关的代码及资源。    </p>
+<p>例如下面的一张图，是一个App运行在iPhone 6+上，使用的各个资源相关的情况：<br><img src="/images/2016.01.04.01.png" alt="">   </p>
+<p>上图中对勾标出来的是在iPhone 6+上真实运行的时候使用到的相关的资源及代码，对比有对勾的部分，更多的是没有被对勾标出来的部分。可以想象我们下载了一个App（前提这个App是Universal的），然后至少一半的代码及资源是我们不需要的，白白占用着我们的空间。这样对用户体验也不好。为了解决这个问题苹果在iOS 9给出了新的解决方案：</p>
+<a id="more"></a>
+<ul>
+<li>App Slicing 当你提交你的iOS 9 打包文件到App Store的时候，苹果编译你的资源和可执行文件，然后为每个设备生成一个特定的可执行文件。最终，设备只会下载适应与其特性的，并且它使用到的内容。这些特性包含显卡性能（原文单词：graphics capabilities）、内存级别、CPU架构、size classes、屏幕 scaling等。  </li>
+<li>On Demand Resouces 应用程序的资源只有在需要使用的时候才会下载，并且如果其他资源需要空间这些资源可以被移除。</li>
+<li>Bitcode 在你提交App到App Store的时候，Bitcode可以作为中间产物一起提交。包含bitcode配置的程序将会在App store上被编译和链接。bitcode允许苹果在后期重新优化我们程序的二进制文件，而不需要我们重新提交一个新的版本到App store上。   </li>
+</ul>
+<p>这三个技术加起来，统一称为App Thinning。</p>
+<h3 id="Getting-started"><a href="#Getting-started" class="headerlink" title="Getting started"></a>Getting started</h3><p>打开本章节的初始项目，然后选在iPad Air 2运行，这时候运行效果如下：<br><img src="/images/2016.01.04.02.png" alt=""></p>
+<p>伴随着模拟器启动起来的还打开了一个Finder窗口：<br><img src="/images/2016.01.04.03.png" alt=""></p>
+<p>这个Finder窗口能够打开，是因为在程序中添加了一个脚本，每次运行的时候都会执行，脚本所在地方如下：<br><img src="/images/2016.01.04.04.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;App Size in KB:  `du -sk \&quot;$&#123;CONFIGURATION_BUILD_DIR&#125;/$&#123;EXECUTABLE_NAME&#125;.app\&quot;`&quot;</span><br><span class="line">if [ &quot;$&#123;CONFIGURATION&#125;&quot; = &quot;Debug&quot; ]; then</span><br><span class="line">open $&#123;CONFIGURATION_BUILD_DIR&#125;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>   </p>
+<p>在Finder的Old CA Maps点击右键，选择显示包内容，如下：<br><img src="/images/2016.01.04.05.png" alt="">   </p>
+<p>上图中标注的说明如下：</p>
+<ol>
+<li>Assets.car是Assets.xcassets被Xcode进行编译后的文件。</li>
+<li>Old CA Maps是真实运行在设备上的可执行文件。</li>
+<li>Santa Cruz PNGs 这个是图片文件，但是没有被编译到Assets.car文件中，这是因为它并没有放到Assets.xcassets中，而是放到了工程的顶层文件中。</li>
+<li>SD_Map.bundle 这个就是地图图片文件，但是将近120MB。</li>
+</ol>
+<h4 id="Measuring-your-work"><a href="#Measuring-your-work" class="headerlink" title="Measuring your work"></a>Measuring your work</h4><p>本章介绍一些App瘦身相关的东西，所以我们必须能够测量App是否减少了。工程里面已经内置了一个脚本（上面代码里面有），能够在build的过程中输出App的大小。查看的位置如下：<br><img src="/images/2016.01.04.06.png" alt="">   </p>
+<h3 id="Slicing-up-app-slicing"><a href="#Slicing-up-app-slicing" class="headerlink" title="Slicing up app slicing"></a>Slicing up app slicing</h3><p>App slicing包含两部分内容：可执行文件分片（Executable slicing）和资源分片（resource slicing）。    </p>
+<p><strong>Executable slicing</strong> 指的是在设备下载App的时候会根据设备的相关信息只是下载对应该设备的相关的可执行文件，并不会包含其他设备及架构的可执行文件，达到App安装包的缩小。并且这个功能并不需要我们做太多，App Store默认支持的。   </p>
+<p>默认情况下提交到App Store的包是包含所有的内容的，这些都在配置文件里面，App Store会自动创建对应于每个类型的可执行文件。这个在iOS9+上支持。</p>
+<h4 id="Being-smart-with-resources"><a href="#Being-smart-with-resources" class="headerlink" title="Being smart with resources"></a>Being smart with resources</h4><p><strong>Resource slicing</strong> 需要我们一小部分简单的工作就能实现。如果使用Resource slicing，则要保证我们的资源都被Asset Catalogs管理。在Xcode 7中，能够标记资源被使用设备的 <strong>Memory</strong> 和 <strong>Graphics</strong> ，如下：<br><img src="/images/2016.01.04.07.png" alt=""></p>
+<h5 id="Your-first-fix"><a href="#Your-first-fix" class="headerlink" title="Your first fix"></a>Your first fix</h5><p>在开始的时候介绍过Santa Cruz PNGs这个文件因为被放到Main bundle中，所以不能被编译进入到Assets.car，进而也不能使用Resource slicing。下面看一下我们怎么修改，使其能够使用：<br><img src="/images/2016.01.04.08.png" alt=""></p>
+<p>选择New Image Set后，将新加入的set命名为Santa Cruz，紧接着做如下操作：<br><img src="/images/2016.01.04.09.png" alt="">  </p>
+<blockquote>
+<p>纠正一下 上图左边的内容应该是删除，包括在Finder内也应该删除   </p>
+</blockquote>
+<p>然后在不同的设备上运行App，最后发现Asset.car文件的大小并不一致。这个是因为在安装的时候，会根据设备安装对应的资源。   </p>
+<h5 id="Lazily-down-loading-content"><a href="#Lazily-down-loading-content" class="headerlink" title="Lazily (down)loading content"></a>Lazily (down)loading content</h5><p>苹果提供On-Demand Resources技术，简称ODR。ODR允许你将资源存储在苹果的服务器上，然后在你App使用的时候再去下载。NSBundleResourceRequest是处理ODR的类，使用这个类能够通过tag下载对应的资源。images, data, OpenGL shaders, SpriteKit Particles, Watchkit Complications等都可以使用ODR。</p>
+<h5 id="Wire-things-up-to-use-tags"><a href="#Wire-things-up-to-use-tags" class="headerlink" title="Wire things up to use tags"></a>Wire things up to use tags</h5><p>下面我们修改代码，实现资源的下载，修改MapChromeViewController.swift对应方法如下：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">downloadAndDisplayMapOverlay</span><span class="params">()</span></span> &#123;</span><br><span class="line"><span class="comment">//    displayOverlayFromBundle(NSBundle.mainBundle())</span></span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> bundleTitle = mapOverlayData?.bundleTitle <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> bundleResource = <span class="type">NSBundleResourceRequest</span>(tags: [bundleTitle])</span><br><span class="line"></span><br><span class="line">    bundleResource.beginAccessingResourcesWithCompletionHandler &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] (error) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">      <span class="type">NSOperationQueue</span>.mainQueue().addOperationWithBlock(&#123; () -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">if</span> error == <span class="literal">nil</span> &#123;</span><br><span class="line">          <span class="keyword">self</span>?.displayOverlayFromBundle(bundleResource.bundle)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>    </p>
+<p>这时候我们运行代码，可能会在控制台输出错误，这是因为我们对应的bundle并没有tag，我们需要给bundle添加tag：<br><img src="/images/2016.01.04.10.png" alt=""></p>
+<p>然后我们重新编译运行我们的程序，然后按照上面的查看编译运行的程序的大小，发现小了许多。对比之前的编译生成的文件，发现运行文件里面不包含bundle了。<br><img src="/images/2016.01.04.11.png" alt="">  </p>
+<blockquote>
+<p>如果你的App在App Store上可能这个资源文件下载的很慢。但是在开发的过程中，Xcode会利用本地网络作为服务器，然后在设备上能够下载到，所以在开发的过程中如果电脑关了，那ODR也就不能使用了。   </p>
+</blockquote>
+<h4 id="Make-it-download-faster"><a href="#Make-it-download-faster" class="headerlink" title="Make it download faster"></a>Make it download faster</h4><p>在我们使用ODR的过程中，如果bundle比较大，可能再下载的过程中就会比较耗时，并且在下载过程中用户不知道，这样用户体验就不好。我们可以再Resource下载的过程中给用户一些提示，修改下面的代码：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// add 为新添加的 ProgressView是程序已经添加上的</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">downloadAndDisplayMapOverlay</span><span class="params">()</span></span> &#123;</span><br><span class="line"><span class="comment">//    displayOverlayFromBundle(NSBundle.mainBundle())</span></span><br><span class="line">  <span class="keyword">guard</span> <span class="keyword">let</span> bundleTitle = mapOverlayData?.bundleTitle <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> bundleResource = <span class="type">NSBundleResourceRequest</span>(tags: [bundleTitle])</span><br><span class="line"></span><br><span class="line">  bundleResource.loadingPriority = <span class="type">NSBundleResourceRequestLoadingPriorityUrgent</span>  <span class="comment">//add</span></span><br><span class="line"></span><br><span class="line">  loadingProgressView.observedProgress = bundleResource.progress <span class="comment">// add</span></span><br><span class="line"></span><br><span class="line">  loadingProgressView.hidden = <span class="literal">false</span> <span class="comment">// add</span></span><br><span class="line">  <span class="type">UIApplication</span>.sharedApplication().networkActivityIndicatorVisible = <span class="literal">true</span> <span class="comment">// add</span></span><br><span class="line"></span><br><span class="line">  bundleResource.beginAccessingResourcesWithCompletionHandler &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] (error) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">    <span class="type">NSOperationQueue</span>.mainQueue().addOperationWithBlock(&#123; () -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">      <span class="keyword">self</span>?.loadingProgressView.hidden = <span class="literal">true</span> <span class="comment">// add</span></span><br><span class="line">      <span class="type">UIApplication</span>.sharedApplication().networkActivityIndicatorVisible = <span class="literal">false</span> <span class="comment">// add</span></span><br><span class="line">      <span class="keyword">if</span> error == <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>?.displayOverlayFromBundle(bundleResource.bundle)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>如果用户已经下载过某个bundle，下次在使用的时候就不会再去下载了。</p>
+</blockquote>
+<h4 id="The-many-flavors-of-tagging"><a href="#The-many-flavors-of-tagging" class="headerlink" title="The many flavors of tagging"></a>The many flavors of tagging</h4><p>虽然添加了ProgressView，在体验是好了一点，但是需要注意测试的时候是使用的本地的网络，所以比较快，但是如果要是提交到App Store上，那可能下载就是比较慢了，如果再配上用户没有WiFi那可能就没法用了，所以我们还需要做其他的一些调整。</p>
+<h5 id="Initial-install-tags"><a href="#Initial-install-tags" class="headerlink" title="Initial install tags"></a>Initial install tags</h5><p>使用Initial install tags，我们可以设置哪些bundle会在我们App初始化安装的时候就会被下载。 下面下介绍一下ODR三种下载的时机吧：</p>
+<ul>
+<li><strong>Initial Install Tags</strong> 在ipa下载的时候一同下载</li>
+<li><strong>Prefetched Tag Order</strong> 在程序下载完成后，下载对应的资源，然后按顺序排列。</li>
+<li><strong>Prefetched Tag Order</strong> 按需下载<br>下面是配置的地方：<br><img src="/images/2016.01.04.12.png" alt="">  </li>
+</ul>
+<h4 id="Purging-content"><a href="#Purging-content" class="headerlink" title="Purging content"></a>Purging content</h4><p>应用程序在使用的过程中通过ODR下载了对应的bundle，但是有时候我们需要清理一些已经下载过的并且不使用的bundle。在介绍怎么删除之前先看一下怎么查看下载的ODR：<br><img src="/images/2016.01.04.13.png" alt="">  </p>
+<h5 id="Set-a-resource-to-be-purged"><a href="#Set-a-resource-to-be-purged" class="headerlink" title="Set a resource to be purged"></a>Set a resource to be purged</h5><p>在MapChromeViewController.swift添加如下代码：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">// new add 是新加的代码</span></span><br><span class="line">  <span class="keyword">var</span> overlayBundleResource: <span class="type">NSBundleResourceRequest</span>? <span class="comment">// new add</span></span><br><span class="line">  <span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">downloadAndDisplayMapOverlay</span><span class="params">()</span></span> &#123;</span><br><span class="line"><span class="comment">//    displayOverlayFromBundle(NSBundle.mainBundle())</span></span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> bundleTitle = mapOverlayData?.bundleTitle <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> bundleResource = <span class="type">NSBundleResourceRequest</span>(tags: [bundleTitle])</span><br><span class="line">    overlayBundleResource = bundleResource <span class="comment">// new add</span></span><br><span class="line"></span><br><span class="line">    bundleResource.loadingPriority = <span class="type">NSBundleResourceRequestLoadingPriorityUrgent</span>  <span class="comment">//add</span></span><br><span class="line"></span><br><span class="line">    loadingProgressView.observedProgress = bundleResource.progress <span class="comment">// add</span></span><br><span class="line"></span><br><span class="line">    loadingProgressView.hidden = <span class="literal">false</span> <span class="comment">// add</span></span><br><span class="line">    <span class="type">UIApplication</span>.sharedApplication().networkActivityIndicatorVisible = <span class="literal">true</span> <span class="comment">// add</span></span><br><span class="line"></span><br><span class="line">    bundleResource.beginAccessingResourcesWithCompletionHandler &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] (error) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">      <span class="type">NSOperationQueue</span>.mainQueue().addOperationWithBlock(&#123; () -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">self</span>?.loadingProgressView.hidden = <span class="literal">true</span> <span class="comment">// add</span></span><br><span class="line">        <span class="type">UIApplication</span>.sharedApplication().networkActivityIndicatorVisible = <span class="literal">false</span> <span class="comment">// add</span></span><br><span class="line">        <span class="keyword">if</span> error == <span class="literal">nil</span> &#123;</span><br><span class="line">          <span class="keyword">self</span>?.displayOverlayFromBundle(bundleResource.bundle)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// new add</span></span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidDisappear</span><span class="params">(animated: Bool)</span></span> &#123;</span><br><span class="line">    <span class="keyword">super</span>.viewDidDisappear(animated)</span><br><span class="line">    <span class="comment">// 告诉系统结束了对资源的访问</span></span><br><span class="line">    overlayBundleResource?.endAccessingResources()</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面的代码，我做测试的时候不清楚会在什么时候会删除，我也模拟了内存警告，如果谁清楚，还请告诉我，谢谢。</p>
+<p>坚持了好几天中午写完了，这篇笔记，一篇笔记13张截图，好累。</p>
+
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS-9-by-Tutoials/">iOS 9 by Tutoials</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/iOS-9/">iOS 9</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://mengxiangyue.com/2016/01/04/iOS9-by-Tutorials-学习笔记四：APP-瘦身/" data-title="iOS9 by Tutorials 学习笔记四：APP 瘦身 | 孟祥月的博客" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/01/07/iOS9-by-Tutorials-学习笔记五：Multitasking/" title="iOS9 by Tutorials 学习笔记五：Multitasking">
+  <strong>上一篇：</strong><br/>
+  <span>
+  iOS9 by Tutorials 学习笔记五：Multitasking</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/12/27/iOS9-by-Tutorials-学习笔记三：Your-App-on-the-Web/"  title="iOS9 by Tutorials 学习笔记三：Your App on the Web">
+ <strong>下一篇：</strong><br/> 
+ <span>iOS9 by Tutorials 学习笔记三：Your App on the Web
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/01/04/iOS9-by-Tutorials-学习笔记四：APP-瘦身/" data-title="iOS9 by Tutorials 学习笔记四：APP 瘦身" data-url="http://mengxiangyue.com/2016/01/04/iOS9-by-Tutorials-学习笔记四：APP-瘦身/"></div>
+</section>
+
+
+</div>
+
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Getting-started"><span class="toc-number">1.</span> <span class="toc-text">Getting started</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Measuring-your-work"><span class="toc-number">1.1.</span> <span class="toc-text">Measuring your work</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Slicing-up-app-slicing"><span class="toc-number">2.</span> <span class="toc-text">Slicing up app slicing</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Being-smart-with-resources"><span class="toc-number">2.1.</span> <span class="toc-text">Being smart with resources</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Your-first-fix"><span class="toc-number">2.1.1.</span> <span class="toc-text">Your first fix</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Lazily-down-loading-content"><span class="toc-number">2.1.2.</span> <span class="toc-text">Lazily (down)loading content</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Wire-things-up-to-use-tags"><span class="toc-number">2.1.3.</span> <span class="toc-text">Wire things up to use tags</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Make-it-download-faster"><span class="toc-number">2.2.</span> <span class="toc-text">Make it download faster</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#The-many-flavors-of-tagging"><span class="toc-number">2.3.</span> <span class="toc-text">The many flavors of tagging</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Initial-install-tags"><span class="toc-number">2.3.1.</span> <span class="toc-text">Initial install tags</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Purging-content"><span class="toc-number">2.4.</span> <span class="toc-text">Purging content</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Set-a-resource-to-be-purged"><span class="toc-number">2.4.1.</span> <span class="toc-text">Set a resource to be purged</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/React-Native/" title="React Native">React Native<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS-9-by-Tutoials/" title="iOS 9 by Tutoials">iOS 9 by Tutoials<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS-Tips/" title="iOS Tips">iOS Tips<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/工具/" title="工具">工具<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/iOS-9/" title="iOS 9">iOS 9<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Github/" title="Github">Github<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/React-Native/" title="React Native">React Native<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/mengxiangyue" target="_blank" title="My CSDN Blog">My CSDN Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> iOS小菜鸟一枚，在努力的路上前进着 <br/>
+			喜欢交朋友、聊与技术有关无关的，可以加我QQ、邮件联系我。QQ&amp;mail：598660766@qq.com</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/1750643861" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="孟祥月">孟祥月</a>
+		
+
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize();
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+      
+    }
+  });
+});
+</script>
+<!-- 解决自动生成文章目录序号问题 -->
+<script type="text/javascript">
+var regex = new RegExp("^\\d+\\.\\d* ");
+var tocItemTextArray = $(".toc-article .toc-item .toc-text");
+for (var i = 0; i < tocItemTextArray.length; i++) {
+  var item = tocItemTextArray[i];
+  item.textContent = item.textContent.replace(regex, "");
+}
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"mengxinagyue"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

@@ -1,0 +1,592 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>iOS9 by Tutorials 学习笔记五：Multitasking | 孟祥月的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <meta name="baidu-site-verification" content="YSYW9gr1NI" />
+    
+    <meta name="author" content="孟祥月">
+    
+
+    
+    <meta name="description" content="在WWDC 2015上，苹果推出了multitasking，这个功能允许我们同时运行两个App，比如在看视频的时候，能够同时刷微博，由于是同时运行两个App，对于硬件的要求比较高，目前苹果并没有在所有的设备上面开放这些功能。下面就简单的介绍一下multitasking。
+Getting started在书中与本章配套的有一个工程Travelog，打开这个工程，在iPad Air 2模拟器上运行一下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS9 by Tutorials 学习笔记五：Multitasking">
+<meta property="og:url" content="http://mengxiangyue.com/2016/01/07/iOS9-by-Tutorials-学习笔记五：Multitasking/index.html">
+<meta property="og:site_name" content="孟祥月的博客">
+<meta property="og:description" content="在WWDC 2015上，苹果推出了multitasking，这个功能允许我们同时运行两个App，比如在看视频的时候，能够同时刷微博，由于是同时运行两个App，对于硬件的要求比较高，目前苹果并没有在所有的设备上面开放这些功能。下面就简单的介绍一下multitasking。
+Getting started在书中与本章配套的有一个工程Travelog，打开这个工程，在iPad Air 2模拟器上运行一下">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.09/01.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.09/02.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.09/03.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.09/04.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.09/05.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.09/06.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.09/07.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.09/08.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.09/09.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.09/10.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.09/11.png">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.01.09/12.png">
+<meta property="og:updated_time" content="2016-04-25T10:54:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS9 by Tutorials 学习笔记五：Multitasking">
+<meta name="twitter:description" content="在WWDC 2015上，苹果推出了multitasking，这个功能允许我们同时运行两个App，比如在看视频的时候，能够同时刷微博，由于是同时运行两个App，对于硬件的要求比较高，目前苹果并没有在所有的设备上面开放这些功能。下面就简单的介绍一下multitasking。
+Getting started在书中与本章配套的有一个工程Travelog，打开这个工程，在iPad Air 2模拟器上运行一下">
+<meta name="twitter:image" content="http://mengxiangyue.com/images/2016.01.09/01.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="孟祥月的博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/mengxiangyue.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/mengxiangyue.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="孟祥月的博客" title="孟祥月的博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="孟祥月的博客">孟祥月的博客</a></h1>
+				<h2 class="blog-motto">昨晚多几分钟的准备，今天少几小时的麻烦。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					<!-- 
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:mengxiangyue.com">
+					</form>
+					 -->
+					</li>
+				</ul>
+			</nav>
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody">
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/01/07/iOS9-by-Tutorials-学习笔记五：Multitasking/" title="iOS9 by Tutorials 学习笔记五：Multitasking" itemprop="url">iOS9 by Tutorials 学习笔记五：Multitasking</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="孟祥月" target="_blank" itemprop="author">孟祥月</a>
+		
+  <p class="article-time">
+    <time datetime="2016-01-07T15:10:56.000Z" itemprop="datePublished"> 发表于 2016-01-07</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Getting-started"><span class="toc-number">1.</span> <span class="toc-text">Getting started</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Slide-Over"><span class="toc-number">1.1.</span> <span class="toc-text">Slide Over</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Split-View"><span class="toc-number">1.2.</span> <span class="toc-text">Split View</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Picture-in-Picture-or-PIP"><span class="toc-number">1.3.</span> <span class="toc-text">Picture in Picture, or PIP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#multitasking支持情况"><span class="toc-number">1.4.</span> <span class="toc-text">multitasking支持情况</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#让你的App支持multitasking"><span class="toc-number">2.</span> <span class="toc-text">让你的App支持multitasking</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Orientation-and-size-changes"><span class="toc-number">2.1.</span> <span class="toc-text">Orientation and size changes</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Adaptive-presentation"><span class="toc-number">3.</span> <span class="toc-text">Adaptive presentation</span></a></li></ol>
+		
+		</div>
+		
+    <blockquote>
+      <p>声明：本文章版权归作者所有，转载请注明出处。<br>
+        孟祥月的博客：<a href="http://www.mengxiangyue.com" target="_blank" rel="external">http://www.mengxiangyue.com</a><br>
+        <a href="http://blog.csdn.net/mengxiangyue" target="_blank" rel="external">http://blog.csdn.net/mengxiangyue</a>
+      </p>
+    </blockquote>
+
+		<p>在WWDC 2015上，苹果推出了multitasking，这个功能允许我们同时运行两个App，比如在看视频的时候，能够同时刷微博，由于是同时运行两个App，对于硬件的要求比较高，目前苹果并没有在所有的设备上面开放这些功能。下面就简单的介绍一下multitasking。</p>
+<h3 id="Getting-started"><a href="#Getting-started" class="headerlink" title="Getting started"></a>Getting started</h3><p>在书中与本章配套的有一个工程Travelog，打开这个工程，在iPad Air 2模拟器上运行一下。我们切换横竖屏，你能看到类似如下的界面：<br><img src="/images/2016.01.09/01.png" alt=""></p>
+<a id="more"></a>
+<p>Travelog App使用了UISpiltViewController来展示左边的列表，点击左边的列表，在右边会显示对应的详细信息。我们会更具这个App介绍一下multitasking的三种模式：</p>
+<ul>
+<li>Slide Over</li>
+<li>Split View</li>
+<li>Picture in Picture, or PIP</li>
+</ul>
+<h4 id="Slide-Over"><a href="#Slide-Over" class="headerlink" title="Slide Over"></a>Slide Over</h4><p>我们沿着iPad的屏幕右边缘像左边滑动，这时候会浮动出来一个App的列表，点击其中的一个App，会显示如下，这种状态就是Slide Over模式：<br><img src="/images/2016.01.09/02.png" alt=""></p>
+<p>在这种状态下，Travelog是不能使用的，只有我们弹出的日历App是可以使用的。</p>
+<h4 id="Split-View"><a href="#Split-View" class="headerlink" title="Split View"></a>Split View</h4><p>注意一下在日历App左边有一个小的图标，点击那个图标后，Travelog将会和日历App同时显示在iPad的屏幕上，并且同时能够使用，这种状态就是Split View模式：<br><img src="/images/2016.01.09/03.png" alt="">    </p>
+<h4 id="Picture-in-Picture-or-PIP"><a href="#Picture-in-Picture-or-PIP" class="headerlink" title="Picture in Picture, or PIP"></a>Picture in Picture, or PIP</h4><p>这种模式翻译成成中文是画中画，类似于电视上的画中画的功能。一个例子是我们可以在使用FaceTime的时候，同时使用其他的App。FaceTime将会被缩放到一个小的界面中，并且浮动在你使用的App上面。</p>
+<h4 id="multitasking支持情况"><a href="#multitasking支持情况" class="headerlink" title="multitasking支持情况"></a>multitasking支持情况</h4><p><img src="/images/2016.01.09/04.png" alt="">   </p>
+<h3 id="让你的App支持multitasking"><a href="#让你的App支持multitasking" class="headerlink" title="让你的App支持multitasking"></a>让你的App支持multitasking</h3><p>如果你的App慢如如下的条件，那么你的App就能够支持multitasking。</p>
+<ul>
+<li>是一个universal app</li>
+<li>使用SDK 9.x编译</li>
+<li>支持所有的方向</li>
+<li>使用launch storyboard   </li>
+</ul>
+<p>满足上面四个条件的APP只是能够支持multitasking，并不表示能够完美的适配。<br>Travelog 满足了上面的四个功能，但是它并没有完美的适配。   </p>
+<h4 id="Orientation-and-size-changes"><a href="#Orientation-and-size-changes" class="headerlink" title="Orientation and size changes"></a>Orientation and size changes</h4><p>在Split View 模式下面运行 Travelog，旋转iPad为竖屏方向，显示如下：<br><img src="/images/2016.01.09/05.png" alt="">   </p>
+<p>这是一个列表界面，能够看到左边有很大的空白，在后面的内容中，我们能够更好的利用这些空白区域。   </p>
+<p>旋转屏幕至横屏状态，如下：<br><img src="/images/2016.01.09/06.png" alt="">  </p>
+<p>上面的界面也是列表界面，但是master列太窄了。   </p>
+<p>打开SplitViewController.swift文件，SplitViewController是UISplitViewController的子类，并且覆写了viewDidlayoutSubviews()， 用来更新主列的最大宽度。这个方法可能不起作用，因为在横屏Split view 模式下也可能出现窄的windown。  </p>
+<p>UIKit提供了下面几个方法用于捕获你的layout的变化:   </p>
+<ol>
+<li>willTransitionToTraitCollection(_:, withTransitionCoordinator:)</li>
+<li>viewWillTransitionToSize(_:, withTransitionCoordinator:)</li>
+<li>traitCollectionDidChange(_:):   </li>
+</ol>
+<p>下面展示了Size Classes的各种状态：<br><img src="/images/2016.01.09/07.png" alt=""></p>
+<blockquote>
+<p>上图中 R 代表 Regular 而 C 代表 Compact   </p>
+</blockquote>
+<p>根据上图可以看出，并不是所有的multitasking和方向改变都会触发size class改变，所有你不能仅仅依靠size classes去提供最好的用户体验。我们可以viewWillTransitionToSize这个方法，在size classes改变的时候，做出正确的操作。   </p>
+<p>下面实际操作一下，在SplitViewController.swift删除viewDidLayoutSubviews() 和 updateMaximumPrimaryColumnWidth()方法，添加某些方法，最终如下（看注释）：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> UIKit</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SplitViewController</span>: <span class="title">UISplitViewController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">//  需要删除</span></span><br><span class="line"><span class="comment">//  override func viewDidLayoutSubviews() &#123;</span></span><br><span class="line"><span class="comment">//    super.viewDidLayoutSubviews()</span></span><br><span class="line"><span class="comment">//    updateMaximumPrimaryColumnWidth()</span></span><br><span class="line"><span class="comment">//  &#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">preferredStatusBarStyle</span><span class="params">()</span></span> -&gt; <span class="type">UIStatusBarStyle</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> .<span class="type">LightContent</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//  需要删除</span></span><br><span class="line"><span class="comment">//  // MARK: Helper</span></span><br><span class="line"><span class="comment">//  </span></span><br><span class="line"><span class="comment">//  func updateMaximumPrimaryColumnWidth() &#123;</span></span><br><span class="line"><span class="comment">//    if UIInterfaceOrientationIsPortrait(UIApplication.sharedApplication().statusBarOrientation) &#123;</span></span><br><span class="line"><span class="comment">//      maximumPrimaryColumnWidth = 170.0</span></span><br><span class="line"><span class="comment">//    &#125; else &#123;</span></span><br><span class="line"><span class="comment">//      maximumPrimaryColumnWidth = UISplitViewControllerAutomaticDimension</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"><span class="comment">//  &#125;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 添加的</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">        updateMaximumPrimaryColumnWidthBasedOnSize(view.bounds.size)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 添加的</span></span><br><span class="line">    <span class="comment">// 这是一个辅助方法 用于设置主列的最大宽度</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">updateMaximumPrimaryColumnWidthBasedOnSize</span><span class="params">(size: CGSize)</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> size.width &lt; <span class="type">UIScreen</span>.mainScreen().bounds.width || size.width &lt; size.height &#123;</span><br><span class="line">            maximumPrimaryColumnWidth = <span class="number">170.0</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            maximumPrimaryColumnWidth = <span class="type">UISplitViewControllerAutomaticDimension</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 添加的</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewWillTransitionToSize</span><span class="params">(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.viewWillTransitionToSize(size,withTransitionCoordinator: coordinator)</span><br><span class="line">        updateMaximumPrimaryColumnWidthBasedOnSize(size)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>   </p>
+<p>运行程序app最终效果如下，能够看出来app的主列的宽度体验更好一点了。<br><img src="/images/2016.01.09/08.png" alt="">    </p>
+<p>仔细看一下没行的内容，能够看到我们行上的内容，还是有问题的。应该是我们的cell没有响应size的变化。打开LogCell.swift找到layoutSubviews()的实现，能够发现代码检查的是UIScreen.mainScreen().bounds.width，再决定cell是使用Compact view还是regular view。 UIScreen代表整个屏幕，不去理会multitasking的状态。你不能再依赖屏幕尺寸来判断了。更新如下代码：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 修改</span></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">let</span> widthThreshold: <span class="type">CGFloat</span> = <span class="number">180.0</span></span><br><span class="line">......</span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">layoutSubviews</span><span class="params">()</span></span> &#123;</span><br><span class="line">   <span class="keyword">super</span>.layoutSubviews()</span><br><span class="line">   <span class="comment">// 修改</span></span><br><span class="line"><span class="comment">//    let isTooNarrow = UIScreen.mainScreen().bounds.width &lt; LogCell.widthThreshold</span></span><br><span class="line">   <span class="keyword">let</span> isTooNarrow = bounds.width &lt;= <span class="type">LogCell</span>.widthThreshold</span><br><span class="line">   compactView.hidden = !isTooNarrow</span><br><span class="line">   regularView.hidden = isTooNarrow</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<p>修改后运行效果如下：<br><img src="/images/2016.01.09/09.png" alt=""></p>
+<h3 id="Adaptive-presentation"><a href="#Adaptive-presentation" class="headerlink" title="Adaptive presentation"></a>Adaptive presentation</h3><p>在如下状态下面点击 Photo Library bar button，能够看到如下效果：<br><img src="/images/2016.01.09/10.png" alt=""></p>
+<p>在上图状态下拖动中间的标志，使APP为5：5模式，效果如下：<br><img src="/images/2016.01.09/11.png" alt="">   </p>
+<p>能够注意到，我们没有做任何改变，但是我们从33%变成50%的时候，弹出的模态菜单变成了整个页面。这个效果是由UIPopoverPresentationController控制的，而我们想要的效果是是只有APP在Slide Over模式或者作为第二APP并且在33%的时候才会使用popover。我们可以设置UIPopoverPresentationController的delegate来实现我们的行为。   </p>
+<p>打开LogsViewController.swift，添加如下代码：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">LogsViewController</span>: <span class="title">UIPopoverPresentationControllerDelegate</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">adaptivePresentationStyleForPresentationController</span><span class="params">( controller: UIPresentationController,traitCollection: UITraitCollection)</span></span> -&gt; <span class="type">UIModalPresentationStyle</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//1 判断是iPad</span></span><br><span class="line">        <span class="keyword">guard</span> traitCollection.userInterfaceIdiom == .<span class="type">Pad</span> <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> .<span class="type">FullScreen</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 宽度大于320使用popover</span></span><br><span class="line">        <span class="keyword">if</span> splitViewController?.view.bounds.width &gt; <span class="number">320</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> .<span class="type">None</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> .<span class="type">FullScreen</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  </p>
+<p>下面找到如下方法设置代理：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">presentImagePickerControllerWithSourceType</span><span class="params">(sourceType: UIImagePickerControllerSourceType)</span></span> &#123;</span><br><span class="line">    <span class="keyword">let</span> controller = <span class="type">UIImagePickerController</span>()</span><br><span class="line">    controller.delegate = <span class="keyword">self</span></span><br><span class="line">    controller.sourceType = sourceType</span><br><span class="line">    controller.mediaTypes = [<span class="type">String</span>(kUTTypeImage), <span class="type">String</span>(kUTTypeMovie)]</span><br><span class="line">    controller.view.tintColor = <span class="type">UIColor</span>.themeTineColor()</span><br><span class="line">    <span class="keyword">if</span> sourceType == <span class="type">UIImagePickerControllerSourceType</span>.<span class="type">PhotoLibrary</span> &#123;</span><br><span class="line">      controller.modalPresentationStyle = .<span class="type">Popover</span></span><br><span class="line">      <span class="keyword">let</span> presenter = controller.popoverPresentationController</span><br><span class="line">      presenter?.sourceView = view</span><br><span class="line">      presenter?.barButtonItem = photoLibraryButton</span><br><span class="line">      presenter?.delegate = <span class="keyword">self</span> <span class="comment">// 添加</span></span><br><span class="line">    &#125;</span><br><span class="line">    presentViewController(controller, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>最终运行的效果如下：<br><img src="/images/2016.01.09/12.png" alt=""></p>
+<p>算是完成了这一篇笔记吧，可能跟书中不完全一样，感觉这篇文章只是简单介绍了一下，如果想更多了解请查看：<a href="https://developer.apple.com/library/ios/documentation/WindowsViews/Conceptual/AdoptingMultitaskingOniPad/index.html#//apple_ref/doc/uid/TP40015145-CH3-SW1" target="_blank" rel="external">苹果文档</a></p>
+
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS-9-by-Tutoials/">iOS 9 by Tutoials</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/iOS-9/">iOS 9</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://mengxiangyue.com/2016/01/07/iOS9-by-Tutorials-学习笔记五：Multitasking/" data-title="iOS9 by Tutorials 学习笔记五：Multitasking | 孟祥月的博客" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/01/11/OC项目中使用Swift/" title="OC项目中使用Swift">
+  <strong>上一篇：</strong><br/>
+  <span>
+  OC项目中使用Swift</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/01/04/iOS9-by-Tutorials-学习笔记四：APP-瘦身/"  title="iOS9 by Tutorials 学习笔记四：APP 瘦身">
+ <strong>下一篇：</strong><br/> 
+ <span>iOS9 by Tutorials 学习笔记四：APP 瘦身
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/01/07/iOS9-by-Tutorials-学习笔记五：Multitasking/" data-title="iOS9 by Tutorials 学习笔记五：Multitasking" data-url="http://mengxiangyue.com/2016/01/07/iOS9-by-Tutorials-学习笔记五：Multitasking/"></div>
+</section>
+
+
+</div>
+
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Getting-started"><span class="toc-number">1.</span> <span class="toc-text">Getting started</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Slide-Over"><span class="toc-number">1.1.</span> <span class="toc-text">Slide Over</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Split-View"><span class="toc-number">1.2.</span> <span class="toc-text">Split View</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Picture-in-Picture-or-PIP"><span class="toc-number">1.3.</span> <span class="toc-text">Picture in Picture, or PIP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#multitasking支持情况"><span class="toc-number">1.4.</span> <span class="toc-text">multitasking支持情况</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#让你的App支持multitasking"><span class="toc-number">2.</span> <span class="toc-text">让你的App支持multitasking</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Orientation-and-size-changes"><span class="toc-number">2.1.</span> <span class="toc-text">Orientation and size changes</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Adaptive-presentation"><span class="toc-number">3.</span> <span class="toc-text">Adaptive presentation</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/React-Native/" title="React Native">React Native<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS-9-by-Tutoials/" title="iOS 9 by Tutoials">iOS 9 by Tutoials<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS-Tips/" title="iOS Tips">iOS Tips<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/工具/" title="工具">工具<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/iOS-9/" title="iOS 9">iOS 9<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Github/" title="Github">Github<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/React-Native/" title="React Native">React Native<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/mengxiangyue" target="_blank" title="My CSDN Blog">My CSDN Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> iOS小菜鸟一枚，在努力的路上前进着 <br/>
+			喜欢交朋友、聊与技术有关无关的，可以加我QQ、邮件联系我。QQ&amp;mail：598660766@qq.com</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/1750643861" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="孟祥月">孟祥月</a>
+		
+
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize();
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+      
+    }
+  });
+});
+</script>
+<!-- 解决自动生成文章目录序号问题 -->
+<script type="text/javascript">
+var regex = new RegExp("^\\d+\\.\\d* ");
+var tocItemTextArray = $(".toc-article .toc-item .toc-text");
+for (var i = 0; i < tocItemTextArray.length; i++) {
+  var item = tocItemTextArray[i];
+  item.textContent = item.textContent.replace(regex, "");
+}
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"mengxinagyue"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
