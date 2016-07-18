@@ -1,0 +1,545 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>MShare第二期干货分享:聊聊Android那些事 | 孟祥月的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <meta name="baidu-site-verification" content="YSYW9gr1NI" />
+    
+    <meta name="author" content="孟祥月">
+    
+
+    
+    <meta name="description" content="7月2号，我们在联合创业办公社[People Squared,简称P2]举办了MShare的第二场线下的分享会：聊聊Android那些事。这次活动我们请到了问吧科技的张万新、新浪微博的高一航、宜信的徐金山分享他们在工作中的一些总结。下面是分享的题目及PPT：   
+
+张万新 深入解析Handler的原理以及Handler的使用“姿势”配套的文章深入解析Handler原理以及Handler的使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MShare第二期干货分享:聊聊Android那些事">
+<meta property="og:url" content="http://mengxiangyue.com/2016/07/18/MShare第二期干货分享-聊聊Android那些事/index.html">
+<meta property="og:site_name" content="孟祥月的博客">
+<meta property="og:description" content="7月2号，我们在联合创业办公社[People Squared,简称P2]举办了MShare的第二场线下的分享会：聊聊Android那些事。这次活动我们请到了问吧科技的张万新、新浪微博的高一航、宜信的徐金山分享他们在工作中的一些总结。下面是分享的题目及PPT：   
+
+张万新 深入解析Handler的原理以及Handler的使用“姿势”配套的文章深入解析Handler原理以及Handler的使用">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.07.18/00.PNG">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.07.18/01.JPG">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.07.18/02.JPG">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.07.18/03.JPG">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.07.18/04.JPG">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.07.18/05.JPG">
+<meta property="og:image" content="http://mengxiangyue.com/images/2016.07.18/06.png">
+<meta property="og:updated_time" content="2016-07-18T14:00:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MShare第二期干货分享:聊聊Android那些事">
+<meta name="twitter:description" content="7月2号，我们在联合创业办公社[People Squared,简称P2]举办了MShare的第二场线下的分享会：聊聊Android那些事。这次活动我们请到了问吧科技的张万新、新浪微博的高一航、宜信的徐金山分享他们在工作中的一些总结。下面是分享的题目及PPT：   
+
+张万新 深入解析Handler的原理以及Handler的使用“姿势”配套的文章深入解析Handler原理以及Handler的使用">
+<meta name="twitter:image" content="http://mengxiangyue.com/images/2016.07.18/00.PNG">
+
+    
+    <link rel="alternative" href="/atom.xml" title="孟祥月的博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/mengxiangyue.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/mengxiangyue.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="孟祥月的博客" title="孟祥月的博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="孟祥月的博客">孟祥月的博客</a></h1>
+				<h2 class="blog-motto">昨晚多几分钟的准备，今天少几小时的麻烦。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					<!-- 
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:mengxiangyue.com">
+					</form>
+					 -->
+					</li>
+				</ul>
+			</nav>
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody">
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/07/18/MShare第二期干货分享-聊聊Android那些事/" title="MShare第二期干货分享:聊聊Android那些事" itemprop="url">MShare第二期干货分享:聊聊Android那些事</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="孟祥月" target="_blank" itemprop="author">孟祥月</a>
+		
+  <p class="article-time">
+    <time datetime="2016-07-18T13:20:52.000Z" itemprop="datePublished"> 发表于 2016-07-18</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#MShare招募成员"><span class="toc-number">1.</span> <span class="toc-text">MShare招募成员</span></a></li></ol>
+		
+		</div>
+		
+    <blockquote>
+      <p>声明：本文章版权归作者所有，转载请注明出处。<br>
+        孟祥月的博客：<a href="http://www.mengxiangyue.com" target="_blank" rel="external">http://www.mengxiangyue.com</a><br>
+        <a href="http://blog.csdn.net/mengxiangyue" target="_blank" rel="external">http://blog.csdn.net/mengxiangyue</a>
+      </p>
+    </blockquote>
+
+		<div align="center"><br><img src="/images/2016.07.18/00.PNG" alt=""><br></div>
+
+<p>7月2号，我们在<a href="http://www.people-squared.com/" target="_blank" rel="external">联合创业办公社[People Squared,简称P2]</a>举办了MShare的第二场线下的分享会：聊聊Android那些事。这次活动我们请到了问吧科技的张万新、新浪微博的高一航、宜信的徐金山分享他们在工作中的一些总结。下面是分享的题目及PPT：   </p>
+<ul>
+<li>张万新 深入解析Handler的原理以及Handler的使用“姿势”<br>配套的文章<a href="https://github.com/wswenyue/talk/blob/gh-pages/talk_Android_Handler.md" target="_blank" rel="external">深入解析Handler原理以及Handler的使用姿势</a></li>
+<li>高一航 动态代理模式项目实战</li>
+<li>徐金山 Android应用架构设计心得分享<br><a href="https://github.com/MShareGroup/MShare_Events/tree/master/%E7%AC%AC%E4%BA%8C%E6%9C%9F_Android_20160702" target="_blank" rel="external">PPT及Demo地址</a> 建议大家关注该仓库，后续的PPT及Demo都会放到这个仓库中。  </li>
+</ul>
+<p>本次活动中本来计划录屏，但是由于中间的操作问题，造成了最后的录制视频图像不全，无法观看，所以很遗憾本次没有录屏视频，以后我们会尽力做好。</p>
+<h3 id="MShare招募成员"><a href="#MShare招募成员" class="headerlink" title="MShare招募成员"></a>MShare招募成员</h3><a id="more"></a>
+<p>MShare也在招募一些成员，要求爱分享、技术中级水平（初级如果特别爱学习也可以），有想加入的联系<a href="http://weibo.com/gaoyihang?is_all=1" target="_blank" rel="external">@写代码的高小土</a>或者联系我<a href="http://weibo.com/u/1750643861?is_all=1" target="_blank" rel="external">@孟祥月_iOS</a>。</p>
+<p>本次由MShare小组内的高一航<a href="http://weibo.com/gaoyihang?is_all=1" target="_blank" rel="external">@写代码的高小土</a>负责组织，十分感谢他的辛苦组织。还感谢<a href="http://gold.xitu.io/welcome" target="_blank" rel="external">掘金</a>、<a href="https://coding.net/" target="_blank" rel="external">coding</a>、<a href="http://www.smartdot.com.cn/" target="_blank" rel="external">慧点科技</a>、<a href="https://segmentfault.com/" target="_blank" rel="external">segmentfault</a>、<a href="http://fir.im/" target="_blank" rel="external">fir.im</a>、<a href="http://www.cocoachina.com/" target="_blank" rel="external">cocoachina</a>、<a href="http://www.tuicool.com/" target="_blank" rel="external">推酷</a>、<a href="http://www.deveco.io/" target="_blank" rel="external">deveco</a>、<a href="http://toutiao.io/" target="_blank" rel="external">开发者头条</a>、<a href="http://www.people-squared.com/" target="_blank" rel="external">联合创业办公社[People Squared,简称P2]</a>、<a href="http://www.imooc.com/" target="_blank" rel="external">慕课网</a>的帮助。  </p>
+<p>下面是活动的介绍及现场的一些照片：<br><img src="/images/2016.07.18/01.JPG" alt=""><br><img src="/images/2016.07.18/02.JPG" alt=""><br><img src="/images/2016.07.18/03.JPG" alt=""><br><img src="/images/2016.07.18/04.JPG" alt=""><br><img src="/images/2016.07.18/05.JPG" alt=""><br><img src="/images/2016.07.18/06.png" alt=""></p>
+
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/MShare/">MShare</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://mengxiangyue.com/2016/07/18/MShare第二期干货分享-聊聊Android那些事/" data-title="MShare第二期干货分享:聊聊Android那些事 | 孟祥月的博客" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/06/28/7月2号一场有料的Android分享会，约么？/"  title="7月2号一场有料的Android分享会，约么？">
+ <strong>下一篇：</strong><br/> 
+ <span>7月2号一场有料的Android分享会，约么？
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/07/18/MShare第二期干货分享-聊聊Android那些事/" data-title="MShare第二期干货分享:聊聊Android那些事" data-url="http://mengxiangyue.com/2016/07/18/MShare第二期干货分享-聊聊Android那些事/"></div>
+</section>
+
+
+</div>
+
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#MShare招募成员"><span class="toc-number">1.</span> <span class="toc-text">MShare招募成员</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/React-Native/" title="React Native">React Native<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS-9-by-Tutoials/" title="iOS 9 by Tutoials">iOS 9 by Tutoials<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS-Tips/" title="iOS Tips">iOS Tips<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/工具/" title="工具">工具<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/iOS-9/" title="iOS 9">iOS 9<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MShare/" title="MShare">MShare<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/React-Native/" title="React Native">React Native<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Github/" title="Github">Github<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/mengxiangyue" target="_blank" title="My CSDN Blog">My CSDN Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> iOS小菜鸟一枚，在努力的路上前进着 <br/>
+			喜欢交朋友、聊与技术有关无关的，可以加我QQ、邮件联系我。QQ&amp;mail：598660766@qq.com</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/1750643861" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="孟祥月">孟祥月</a>
+		
+
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize();
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+      
+    }
+  });
+});
+</script>
+<!-- 解决自动生成文章目录序号问题 -->
+<script type="text/javascript">
+var regex = new RegExp("^\\d+\\.\\d* ");
+var tocItemTextArray = $(".toc-article .toc-item .toc-text");
+for (var i = 0; i < tocItemTextArray.length; i++) {
+  var item = tocItemTextArray[i];
+  item.textContent = item.textContent.replace(regex, "");
+}
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"mengxinagyue"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

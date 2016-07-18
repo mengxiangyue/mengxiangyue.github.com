@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengxiangyue.com/"/>
-  <updated>2016-06-28T01:06:34.000Z</updated>
+  <updated>2016-07-18T14:00:25.000Z</updated>
   <id>http://mengxiangyue.com/</id>
   
   <author>
@@ -14,6 +14,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MShare第二期干货分享:聊聊Android那些事</title>
+    <link href="http://mengxiangyue.com/2016/07/18/MShare%E7%AC%AC%E4%BA%8C%E6%9C%9F%E5%B9%B2%E8%B4%A7%E5%88%86%E4%BA%AB-%E8%81%8A%E8%81%8AAndroid%E9%82%A3%E4%BA%9B%E4%BA%8B/"/>
+    <id>http://mengxiangyue.com/2016/07/18/MShare第二期干货分享-聊聊Android那些事/</id>
+    <published>2016-07-18T13:20:52.000Z</published>
+    <updated>2016-07-18T14:00:25.000Z</updated>
+    
+    <content type="html">&lt;div align=&quot;center&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/2016.07.18/00.PNG&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;
+
+&lt;p&gt;7月2号，我们在&lt;a href=&quot;http://www.people-squared.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;联合创业办公社[People Squared,简称P2]&lt;/a&gt;举办了MShare的第二场线下的分享会：聊聊Android那些事。这次活动我们请到了问吧科技的张万新、新浪微博的高一航、宜信的徐金山分享他们在工作中的一些总结。下面是分享的题目及PPT：   &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;张万新 深入解析Handler的原理以及Handler的使用“姿势”&lt;br&gt;配套的文章&lt;a href=&quot;https://github.com/wswenyue/talk/blob/gh-pages/talk_Android_Handler.md&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;深入解析Handler原理以及Handler的使用姿势&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;高一航 动态代理模式项目实战&lt;/li&gt;
+&lt;li&gt;徐金山 Android应用架构设计心得分享&lt;br&gt;&lt;a href=&quot;https://github.com/MShareGroup/MShare_Events/tree/master/%E7%AC%AC%E4%BA%8C%E6%9C%9F_Android_20160702&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;PPT及Demo地址&lt;/a&gt; 建议大家关注该仓库，后续的PPT及Demo都会放到这个仓库中。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;本次活动中本来计划录屏，但是由于中间的操作问题，造成了最后的录制视频图像不全，无法观看，所以很遗憾本次没有录屏视频，以后我们会尽力做好。&lt;/p&gt;
+&lt;h3 id=&quot;MShare招募成员&quot;&gt;&lt;a href=&quot;#MShare招募成员&quot; class=&quot;headerlink&quot; title=&quot;MShare招募成员&quot;&gt;&lt;/a&gt;MShare招募成员&lt;/h3&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;MShare也在招募一些成员，要求爱分享、技术中级水平（初级如果特别爱学习也可以），有想加入的联系&lt;a href=&quot;http://weibo.com/gaoyihang?is_all=1&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;@写代码的高小土&lt;/a&gt;或者联系我&lt;a href=&quot;http://weibo.com/u/1750643861?is_all=1&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;@孟祥月_iOS&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;本次由MShare小组内的高一航&lt;a href=&quot;http://weibo.com/gaoyihang?is_all=1&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;@写代码的高小土&lt;/a&gt;负责组织，十分感谢他的辛苦组织。还感谢&lt;a href=&quot;http://gold.xitu.io/welcome&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;掘金&lt;/a&gt;、&lt;a href=&quot;https://coding.net/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;coding&lt;/a&gt;、&lt;a href=&quot;http://www.smartdot.com.cn/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;慧点科技&lt;/a&gt;、&lt;a href=&quot;https://segmentfault.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;segmentfault&lt;/a&gt;、&lt;a href=&quot;http://fir.im/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;fir.im&lt;/a&gt;、&lt;a href=&quot;http://www.cocoachina.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;cocoachina&lt;/a&gt;、&lt;a href=&quot;http://www.tuicool.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;推酷&lt;/a&gt;、&lt;a href=&quot;http://www.deveco.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;deveco&lt;/a&gt;、&lt;a href=&quot;http://toutiao.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;开发者头条&lt;/a&gt;、&lt;a href=&quot;http://www.people-squared.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;联合创业办公社[People Squared,简称P2]&lt;/a&gt;、&lt;a href=&quot;http://www.imooc.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;慕课网&lt;/a&gt;的帮助。  &lt;/p&gt;
+&lt;p&gt;下面是活动的介绍及现场的一些照片：&lt;br&gt;&lt;img src=&quot;/images/2016.07.18/01.JPG&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/2016.07.18/02.JPG&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/2016.07.18/03.JPG&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/2016.07.18/04.JPG&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/2016.07.18/05.JPG&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/2016.07.18/06.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;div  align=&quot;center&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/2016.07.18/00.PNG&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;
+
+&lt;p&gt;7月2号，我们在&lt;a href=&quot;http://www.people-squared.com/&quot;&gt;联合创业办公社[People Squared,简称P2]&lt;/a&gt;举办了MShare的第二场线下的分享会：聊聊Android那些事。这次活动我们请到了问吧科技的张万新、新浪微博的高一航、宜信的徐金山分享他们在工作中的一些总结。下面是分享的题目及PPT：   &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;张万新 深入解析Handler的原理以及Handler的使用“姿势”&lt;br&gt;配套的文章&lt;a href=&quot;https://github.com/wswenyue/talk/blob/gh-pages/talk_Android_Handler.md&quot;&gt;深入解析Handler原理以及Handler的使用姿势&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;高一航 动态代理模式项目实战&lt;/li&gt;
+&lt;li&gt;徐金山 Android应用架构设计心得分享&lt;br&gt;&lt;a href=&quot;https://github.com/MShareGroup/MShare_Events/tree/master/%E7%AC%AC%E4%BA%8C%E6%9C%9F_Android_20160702&quot;&gt;PPT及Demo地址&lt;/a&gt; 建议大家关注该仓库，后续的PPT及Demo都会放到这个仓库中。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;本次活动中本来计划录屏，但是由于中间的操作问题，造成了最后的录制视频图像不全，无法观看，所以很遗憾本次没有录屏视频，以后我们会尽力做好。&lt;/p&gt;
+&lt;h3 id=&quot;MShare招募成员&quot;&gt;&lt;a href=&quot;#MShare招募成员&quot; class=&quot;headerlink&quot; title=&quot;MShare招募成员&quot;&gt;&lt;/a&gt;MShare招募成员&lt;/h3&gt;
+    
+    </summary>
+    
+    
+      <category term="MShare" scheme="http://mengxiangyue.com/tags/MShare/"/>
+    
+  </entry>
   
   <entry>
     <title>7月2号一场有料的Android分享会，约么？</title>
